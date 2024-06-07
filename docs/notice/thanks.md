@@ -1,7 +1,9 @@
 # 鸣谢列表
 
+-----
+
 > <br/>
-> 仅展示现 WSMCS 服务器内容<br/>
+> 仅展示现 WSMCS 服务器内容。<br/>
 > <br/>
 
 感谢 ATCraft Network 提供官网源码，将 WSMCS 服务器官网进行翻新。

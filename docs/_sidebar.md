@@ -11,6 +11,7 @@
 ## 规则与协定
 
 * [服务器规则](server/rule/server-rules.md)
+* [惩罚措施](server/rule/punishment.md)
 * [服务条款](server/rule/tems-of-service.md)
 * [隐私政策](server/rule/privacy-policy.md)
 
