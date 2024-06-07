@@ -29,8 +29,8 @@ WSMCS 服务器官网
             </div>
             <div class="flex-1 lg:flex hidden justify-end"></div>
         </header>
-        <p class="bg-description display-light">*背景图像: 原版生存 | 出生点</p>
-        <p class="bg-description display-dark">*背景图像: 原版生存 | 出生点</p>
+        <p class="bg-description display-light">*背景图像: 前 2 周目 | 出生点</p>
+        <p class="bg-description display-dark">*背景图像: 前 2 周目 | 小黑塔</p>
     </section>
 </component>
 ```
@@ -52,10 +52,6 @@ WSMCS 服务器官网
     <child placing="header">
         <a role="button" class="button text-light" target="_blank" href="https://wiki.tbstmc.xyz"
            data-aos="fade-up" data-aos-delay="450">文档</a>
-    </child>
-    <child placing="header">
-        <a role="button" class="button text-light" target="_blank" href="https://skin.tbstmc.xyz"
-           data-aos="fade-up" data-aos-delay="600">皮肤站</a>
     </child>
 </apply>
 ```
