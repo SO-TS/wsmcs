@@ -1,5 +1,5 @@
 # WSMCS 服务器 | 文档
-![Static Badge](https://img.shields.io/badge/version-0.0.1-blue?link=a) 最新修改日期：2024-06-07
+![Static Badge](https://img.shields.io/badge/version-0.0.2-blue?link=a) 最新修改日期：2024-06-
 
 > <br/>
 > 文档处于测试状态。<br/>
@@ -21,8 +21,9 @@ WSMCS 服务器由繁星之海工作室旗下 WSMCS 管理组运营。
 服务器地址：
 
 ```
-play.wsmcs.top[JE&BE]
-play6.wsmcs.top[IPv6 进入方式]
+server.wsmcs.top[JE&BE]
+
+端口:默认
 ```
 
 支持版本：
@@ -31,8 +32,8 @@ play6.wsmcs.top[IPv6 进入方式]
 |------|-----------------|------------|
 | Java | < 1.13        | 不支持 |
 | Java | 1.13.2 - 1.17.1 | 支持，游戏体验不佳  |
-| Java | 1.18.2 - 1.19.4 | 支持，游戏体验正常  |
-| Java | >= 1.20   | 支持，游戏体验完美  |
+| Java | 1.18.2 - 1.19.4 | 支持，游戏体验一般  |
+| Java | >= 1.20   | 支持，游戏体验较好  |
 | 基岩   | (仅最新版本)         | 支持，体验不佳    |
 
 _注：为保证游戏体验，Java 端请尽量使用 1.18 及以上版本_
