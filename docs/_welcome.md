@@ -1,5 +1,5 @@
 # WSMCS 服务器 | 文档
-![Static Badge](https://img.shields.io/badge/version-0.0.2-blue?link=a) 最新修改日期：2024-06-
+![Static Badge](https://img.shields.io/badge/version-0.0.2-blue?link=a) 最新修改日期：2024-06-28
 
 > <br/>
 > 文档处于测试状态。<br/>
