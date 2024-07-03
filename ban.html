@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh" id="root">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width">
+
+    <title>封神榜 | WSMCS 服务器</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <link rel="icon" href="/assets/image/logo.png">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/base.min.css">
+    <link rel="stylesheet" href="assets/fonts/fa/css/fa-all.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/aos/2.3.4/aos.css">
+    <script src="/assets/js/script.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="/assets/css/timeline.css">
+</head>
+
+<body class="scroll">
+<compose type="navbar" placing="#page">
+    <property data-id="page-name">封神榜</property>
+</compose>
+
+<compose type="footer" placing="#page"></compose>
+
+<apply type="page-header" placing="#page" component-id="header">
+    <property data-id="title">封神榜</property>
+    <property data-id="description">
+        此页面展示的是对服务器造成恶劣影响并遭到封禁的人员。
+        我们在此奉劝某些人员遵守服务器的规章制度。
+    </property>
+</apply>
+
+<apply type="section" placing="#page" component-id="ban-list">
+    <property data-id="title">封禁列表</property>
+
+    <apply type="team" placing="ban-list" component-id="ban-container">
+        <apply type="team-card" placing="ban-container" component-id="occ">
+            <property data-id="image">https://pic.imgdb.cn/item/6684ad25d9c307b7e94821e4.jpg</property>
+            <property data-id="name">OneClashCat</property>
+            <property data-id="job">正版熊孩子，极具抽象，自导自演，肇事逃逸，事后改名</property>
+            <property data-id="fade-in-delay">0</property>
+
+            <child placing="occ">
+                <a href="https://www.bilibili.com/opus/949360331353751554" target="_blank">
+                    <i class="fab fa-bilibili"></i> 了解详情
+                </a>
+            </child>
+        </apply>
+    </apply>
+</apply>
+
+
+<main id="#page"></main>
+</body>
+</html>
