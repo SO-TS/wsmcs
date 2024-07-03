@@ -1,8 +1,8 @@
 # WSMCS 服务器 | 文档
-![Static Badge](https://img.shields.io/badge/version-0.0.2-blue?link=a) 最新修改日期：2024-06-28
+![Static Badge](https://img.shields.io/badge/version-0.0.2-blue?link=a) 最新修改日期：2024-07-03
 
 > <br/>
-> 文档处于测试状态。<br/>
+> 文档处于开发状态。<br/>
 > <br/>
 
 欢迎来到 WSMCS 服务器！
@@ -13,6 +13,8 @@ WSMCS 服务器由繁星之海工作室旗下 WSMCS 管理组运营。
 我们玩家群体和谐友善，管理组活跃，欢迎新玩家游玩。
 
 服务器支持 Java 版使用正版账号、LittleSkin、红石皮肤站登入，基岩版也可以进服。
+
+服务器需要白名单，请进入 QQ 群填写问卷。
 
 赶快加入吧！
 
