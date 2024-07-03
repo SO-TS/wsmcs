@@ -59,6 +59,6 @@ WSMCS 服务器官网
 `<compose>`标签内联一段html:
 ```html
 <compose type="navbar" placing="#page">
-    <property data-id="page-name">鸣谢列表</property>
+    <property data-id="page-name">封神榜</property>
 </compose>
 ```
