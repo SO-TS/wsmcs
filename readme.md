@@ -1,6 +1,6 @@
 ## WSMCS Official Website
 
-WSMCS 服务器官网
+WSMCS 官网
 
 ------
 
@@ -38,9 +38,9 @@ WSMCS 服务器官网
 使用 `<apply>`标签应用组件：
 ```html
 <apply type="page-header" placing="#page" component-id="header">
-    <property data-id="title">WSMCS 服务器</property>
+    <property data-id="title">WSMCS</property>
     <property data-id="description">
-        WSMCS 服务器由繁星之海工作室旗下 WSMCS 管理组运营。
+        WSMCS 由繁星之海工作室旗下 WSMCS 管理组运营。
         我们拥有原版生存、粘液单方块空岛、起床战争三个子服，未来还会添加新玩法。
         我们玩家群体和谐友善，管理组活跃，欢迎新玩家游玩。
     </property>
