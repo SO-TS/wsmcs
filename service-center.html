@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh" id="root">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width">
+
+    <title>服务中心 | WSMCS</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <link rel="icon" href="/assets/image/logo.png">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/base.min.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.net/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/aos/2.3.4/aos.css">
+    <script src="/assets/js/script.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <link rel="stylesheet" href="/assets/css/timeline.css">
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8739055658442601"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="scroll">
+<compose type="navbar" placing="#page">
+    <property data-id="page-name">服务中心</property>
+</compose>
+
+<compose type="footer" placing="#page"></compose>
+
+<apply type="page-header" placing="#page" component-id="header">
+    <property data-id="title">服务中心</property>
+    <property data-id="description">
+        我们将游戏内的服务资源整合在这里，你可以下载想要的客户端，亦或是利用在线地图看看服务器的新变化。尽情探索和利用吧。<br> （下滑开始）
+    </property>
+</apply>
+
+<apply type="section-highlight" placing="#page" component-id="client">
+    <property data-id="title">客户端下载</property>
+
+    <apply type="products" placing="client" component-id="client-container">
+        <apply type="client-left" placing="client-container">
+            <property data-id="image">https://cdn.modrinth.com/data/U7KwGAnT/3bb856d07f66beaca280706d4020b220c956f690_96.webp</property>
+            <property data-id="title">Touch Client</property>
+            <property data-id="desc">该客户端为使用 Krypton Wrapper 下的 Fold Craft Launcher 玩家提供流畅、易用的使用体验。</property>
+            <property data-id="download">404.html</property>
+            <property data-id="website">404.html</property>
+        </apply>
+    </apply>
+</apply>
+
+<apply type="section" placing="#page" component-id="map">
+    <property data-id="title">在线地图</property>
+
+    <apply type="products" placing="map" component-id="maps-container">
+        <apply type="map-left" placing="maps-container">
+            <property data-id="image">https://s2.loli.net/2025/01/31/1qOoVMzDiEKk6RU.png</property>
+            <property data-id="title">原版生存</property>
+            <property data-id="map">map.wsmcs.top:8100</property>
+        </apply>
+
+        <apply type="map-right" placing="maps-container">
+            <property data-id="image">https://s2.loli.net/2025/01/31/IzQY7teoPkwcybH.png</property>
+            <property data-id="title">粘液单方块空岛</property>
+            <property data-id="map">map.wsmcs.top:8200</property>
+        </apply>
+    </apply>
+</apply>
+
+
+<provider>
+    <import id="map" import="product">
+        <property data-id="flow-direction"></property>
+        <property data-id="description">
+            <p class="animate-right md:mt-3 md:text-xl text-secondary mt-3 lg:leading-normal" data-aos-delay="100">
+                查看<b style="color:var(--theme-color);"> {{title}} </b>的在线地图
+            </p>
+            <div class="flex flex-row gap-4 mt-8">
+                <a role="button" class="button-light animate-left" data-aos-delay="300" target="_self"
+                   href="online-map.html?src={{map}}">打开</a>
+                <a role="button" class="button animate-left" data-aos-delay="450" target="_blank"
+                   href="{{map}}">直接访问</a>
+            </div>
+        </property>
+    </import>
+
+    <import id="map-left" import="map">
+        <property data-id="direction"></property>
+    </import>
+
+    <import id="map-right" import="map">
+        <property data-id="direction">-reverse</property>
+    </import>
+
+    <import id="client" import="product">
+        <property data-id="flow-direction"></property>
+        <property data-id="description">
+            <p class="animate-right md:mt-3 md:text-xl text-secondary mt-3 lg:leading-normal" data-aos-delay="100">
+                {{desc}}
+            </p>
+
+            <div class="flex flex-row gap-4 mt-8">
+                <a role="button" class="button-light animate-left" data-aos-delay="300" target="_blank"
+                   href="{{download}}">下载</a>
+                <a role="button" class="button animate-left" data-aos-delay="450" target="_blank"
+                   href="{{website}}">官网</a>
+            </div>
+        </property>
+    </import>
+
+    <import id="client-left" import="client">
+        <property data-id="direction"></property>
+    </import>
+
+    <import id="client-right" import="client">
+        <property data-id="direction">-reverse</property>
+    </import>
+</provider>
+
+
+<main id="#page"></main>
+</body>
+</html>

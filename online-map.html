@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--suppress HttpUrlsUsage -->
+<html lang="zh" id="root">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width">
+
+    <title>在线地图 | WSMCS</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link rel="icon" href="/assets/image/logo.png">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/base.min.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.net/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/aos/2.3.4/aos.css">
+    <script src="/assets/js/script.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8739055658442601"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="scroll" style="overflow: hidden">
+<compose type="navbar" placing="#page">
+    <property data-id="page-name">在线地图</property>
+</compose>
+
+<main id="#page">
+    <iframe id="frame" style="width: 100vw;height: 100vh;padding-top: 71px">无法读取远程信息...</iframe>
+
+    <script>
+        document.getElementById("frame").setAttribute("src", "http://" + queryURLArgument("src"))
+    </script>
+</main>
+</body>
+</html>

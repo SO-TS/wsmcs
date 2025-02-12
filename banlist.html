@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh" id="root">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width">
+
+    <title>违规玩家 | WSMCS</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <link rel="icon" href="/assets/image/logo.png">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/base.min.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.net/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/aos/2.3.4/aos.css">
+    <script src="/assets/js/script.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/clipboard.js/2.0.11/clipboard.min.js"></script>
+
+    <link rel="stylesheet" href="/assets/css/timeline.css">
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8739055658442601"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="scroll">
+<compose type="navbar" placing="#page">
+    <property data-id="page-name">违规玩家</property>
+</compose>
+
+<compose type="footer" placing="#page"></compose>
+
+<apply type="page-header" placing="#page" component-id="header">
+    <property data-id="title">违规玩家</property>
+    <property data-id="description">
+        此页面展示的是违反规章制度并且造成影响，
+        或做出典型案例的人员。
+        我们在此奉劝玩家遵守服务器的规章制度。
+    </property>
+</apply>
+
+<apply type="section" placing="#page" component-id="ban-list">
+    <property data-id="title">封禁列表</property>
+
+    <apply type="team" placing="ban-list" component-id="ban-container">
+        <apply type="team-card" placing="ban-container" component-id="occ">
+            <property data-id="image">https://s2.loli.net/2025/01/30/TY79Mg4JChKSjtB.jpg</property>
+            <property data-id="name">FriesChen</property>
+            <property data-id="job">正版熊孩子，极具抽象，自导自演，肇事逃逸，事后改名。</property>
+            <property data-id="fade-in-delay">0</property>
+
+            <child placing="occ">
+                <a href="https://www.bilibili.com/opus/949360331353751554" target="_blank">
+                    <i class="fab fa-bilibili"></i> 了解详情
+                </a>
+            </child>
+            <child placing="occ">  
+                <button id="copy-uuid-btn" data-clipboard-text="01ec7747-06bc-48cc-b8d8-410a0a8a1b44"><i class="fa-solid fa-copy"></i> 复制 UUID</button>
+            </child>
+        </apply>
+    </apply>
+</apply>
+
+
+<main id="#page"></main>
+</body>
+<script>
+    var btns = document.getElementById('copy-uuid-btn');
+    var clipboard = new ClipboardJS(btns);
+    clipboard.on('success', function(e) {
+        alert("复制成功，提供 UUID 是为了能够及时追踪 ID 或者更便捷地封禁。");
+    });
+    clipboard.on('error', function(e) {
+        alert("复制失败，请刷新网页后重试。");
+        console.log(e);
+    });
+</script>
+</html>
