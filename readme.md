@@ -4,7 +4,7 @@ WSMCS 官网
 
 ------
 
-> 来自 ATCraft Network 授权使用  内部项目 禁止公开
+> 来自 GrassBlock2022 授权使用  内部项目 禁止公开
 
 
 #### 文件布局
