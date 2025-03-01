@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
 
-    <link rel="icon" href="https://wsmcs.top/assets/image/logo.png">
+    <link rel="icon" href="/assets/image/logo.png">
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/base.min.css">
     <link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.7.2/css/all.min.css">
@@ -21,14 +21,14 @@
     <script src="https://s4.zstatic.net/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="https://s4.zstatic.net/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
-    <link rel="stylesheet" href="/assets/css/timeline.css">
+    <!-- <link rel="stylesheet" href="/assets/css/timeline.css"> !-->
     <link rel="stylesheet" href="/assets/css/carousel.css">
 
     <script src="/assets/js/carousel.js"></script>
     <script async src="https://s4.zstatic.net/ajax/libs/busuanzi/2.3.0/bsz.pure.mini.js"></script>
-
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4909019436808432"
      crossorigin="anonymous"></script>
+    <script src="/assets/js/lazyload.js"></script>
 </head>
 
 <body class="scroll">
@@ -95,7 +95,7 @@
 
     <apply type="products" placing="servers" component-id="servers-container">
         <apply type="product-left" placing="servers-container">
-            <property data-id="image">https://wsmcs.top/assets/image/survival.png</property>
+            <property data-id="image">/assets/image/survival.png</property>
             <property data-id="title">原版生存</property>
             <property data-id="description">
                 体验最纯净的高版本原版生存，可以化作生电大佬，也可以在一方静谧之中享受游戏人生。
@@ -104,7 +104,7 @@
         </apply>
 
         <apply type="product-right" placing="servers-container">
-            <property data-id="image">https://wsmcs.top/assets/image/slimefun.png</property>
+            <property data-id="image">/assets/image/slimefun.png</property>
             <property data-id="title">粘液单方块空岛</property>
             <property data-id="description">
                 将 Minecraft、单方块空岛、粘液科技结合，打造专属于玩家的科技环境。
@@ -113,7 +113,7 @@
         </apply>
 
         <apply type="product-left" placing="servers-container">
-            <property data-id="image">https://wsmcs.top/assets/image/bedwars.png</property>
+            <property data-id="image">/assets/image/bedwars.png</property>
             <property data-id="title">起床战争</property>
             <property data-id="description">
                 1:1 复刻 Hypixel Bedwards，感受 PvP 的趣味。
@@ -209,17 +209,17 @@
     </apply>
 </apply>
 
-<apply type="section" placing="#page" component-id="timeline">
+<!-- <apply type="section" placing="#page" component-id="timeline">
     <property data-id="title">不断前进的历史</property>
 
     <apply type="timeline" placing="timeline" component-id="timeline-container">
-        <!-- <apply type="timeline-item" placing="timeline-container">
+        <apply type="timeline-item" placing="timeline-container">
             <property data-id="title">现在 | 不断前进，从未止步</property>
             <property data-id="description">
                 服务器已经实现稳定运行，配套服务不断完善和增加。
                 我们在将来会继续致力于玩家体验，让服务器发展得越来越好。
             </property>
-        </apply> !-->
+        </apply>
         <apply type="timeline-item" placing="timeline-container">
             <property data-id="title">现在 | 建设中</property>
             <property data-id="description">
@@ -332,26 +332,35 @@
             </property>
         </apply>
     </apply>
+</apply> !-->
+
+<apply type="section" placing="#page" component-id="video">
+    <property data-id="title">服务器宣传视频</property>
+    <child placing="video">
+        <div class="max-w-7xl mx-auto">
+            <video controls="" preload="none" controlslist="nodownload" style="width: 100%; height: 100%; object-fit: contain; border-radius: 20px; margin-top: 1em;"><source src="https://acbox.app/f/bv51HP/%5B1.20.x%E7%BA%AF%E5%87%80%E6%9C%8D%5D%E6%97%A0%E9%9C%80%E6%AD%A3%E7%89%88%20WSMCS%E6%9C%8D%E5%8A%A1%E5%99%A8.mp4" type="video/mp4"></video>
+            <p class="text-secondary"> (视频播放由 <a href="https://acbox.app/" style="color: rgb(170, 51, 51);">杏仁云盘</a> 提供支持) [<a href="https://www.bilibili.com/video/BV1ZK411e7SJ/" style="color: var(--theme-color-highlight);">前往 哔哩哔哩 观看</a>] (宣传片为现 1 周目，来自已离职的影亦) </p>
+        </div>
+    </child>
 </apply>
 
 <apply type="section-highlight" placing="#page" component-id="gallery">
     <property data-id="title">玩家的优秀作品</property>
     <child placing="gallery">
-
         <div class="carousel animate">
             <div class="banners">
                 <ul class="images">
-                    <li><img alt="" src="https://wsmcs.top/assets/image/1.png"></li>
-                    <li><img alt="" src="https://wsmcs.top/assets/image/2.png"></li>
-                    <li><img alt="" src="https://wsmcs.top/assets/image/3.png"></li>
-                    <li><img alt="" src="https://wsmcs.top/assets/image/4.png"></li>
-                    <li><img alt="" src="https://wsmcs.top/assets/image/5.png"></li>
-                    <li><img alt="" src="https://wsmcs.top/assets/image/6.png"></li>
-                    <li><img alt="" src="https://wsmcs.top/assets/image/7.png"></li>
-                    <li><img alt="" src="https://wsmcs.top/assets/image/8.png"></li>
+                    <li><img alt="" data-src="/assets/image/1.png" class="lazy"></li>
+                    <li><img alt="" data-src="/assets/image/2.png" class="lazy"></li>
+                    <li><img alt="" data-src="/assets/image/3.png" class="lazy"></li>
+                    <li><img alt="" data-src="/assets/image/4.png" class="lazy"></li>
+                    <li><img alt="" data-src="/assets/image/5.png" class="lazy"></li>
+                    <li><img alt="" data-src="/assets/image/6.png" class="lazy"></li>
+                    <li><img alt="" data-src="/assets/image/7.png" class="lazy"></li>
+                    <li><img alt="" data-src="/assets/image/8.png" class="lazy"></li>
                 </ul>
-                <a href="javascript:" class="btn prev"><img src="https://wsmcs.top/assets/image/left.png" alt="icon-prev"></a>
-                <a href="javascript:" class="btn next"><img src="https://wsmcs.top/assets/image/right.png" alt="icon-next"></a>
+                <a href="javascript:" class="btn prev"><img src="/assets/image/left.png" alt="icon-prev"></a>
+                <a href="javascript:" class="btn next"><img src="/assets/image/right.png" alt="icon-next"></a>
                 <ul class="selectors"></ul>
             </div>
         </div>
@@ -412,11 +421,11 @@
 
             <child placing="sponsor">
                 <a role="button" class="button-light" target="_blank"
-                   href="https://wsmcs.top/assets/image/sponsor_tom.jpg">Tom_Chicken</a>
+                   href="/assets/image/sponsor_tom.jpg">Tom_Chicken</a>
             </child>
             <child placing="sponsor">
                 <a role="button" class="button" target="_blank"
-                   href="https://wsmcs.top/assets/image/sponsor_aptusitu.jpg">ApartTUSITU</a>
+                   href="/assets/image/sponsor_aptusitu.jpg">ApartTUSITU</a>
             </child>
         </apply>
     </apply>
