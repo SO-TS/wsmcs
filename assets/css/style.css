@@ -102,11 +102,11 @@ body {
 .header-bg {
     background-position-x: left;
     background-position-y: 0;
-    background: url('https://s2.loli.net/2025/01/01/PKxY81Ao7gusFpw.png');
+    background: url('/assets/image/bg_light.png');
 }
 
 .dark-mode .header-bg {
-    background: center 50% url('https://s2.loli.net/2025/01/31/x8DGasenjPkpZ17.png');
+    background: center 50% url('/assets/image/bg_dark.png');
 }
 
 .dark-mode .display-light {
