@@ -33,76 +33,65 @@ function copy(e, t) {
     document.body.removeChild(n);
 }
 
+// 优化 queryURLArgument 函数
 function queryURLArgument(name) {
-    let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-    let r = window.location.search.substring(1).match(reg); //获取url中"?"符后的字符串并正则匹配
-    let context = "";
-    if (r != null)
-        context = r[2];
-    reg = null;
-    r = null;
-    if (context == null || context === "" || context === undefined) {
-        return undefined;
-    }
-    return context;
+    const reg = new RegExp(`[?&]${name}=([^&]*)`, 'i');
+    const match = window.location.search.match(reg);
+    return match ? decodeURIComponent(match[1]) : undefined;
 }
 
+// 优化 buildComponents 函数
 function buildComponents(callback) {
     $.get("/component.html", function (source) {
-        const sourceDocument = (new DOMParser).parseFromString(source, "text/html");
+        const sourceDocument = PARSER.parseFromString(source, "text/html");
 
-        for (const p of document.getElementsByTagName("provider")) {
-            sourceDocument.body.appendChild(p)
-            console.log(document.getElementsByTagName("provider"))
-        }
+        document.querySelectorAll("provider").forEach(provider => {
+            sourceDocument.body.appendChild(provider);
+        });
 
-        for (const compose of document.getElementsByTagName("compose")) {
-            const type = compose.getAttribute("type")
-            const properties = compose.getElementsByTagName("property")
-            const location = compose.getAttribute("placing")
+        document.querySelectorAll("compose").forEach(compose => {
+            const type = compose.getAttribute("type");
+            const properties = compose.querySelectorAll("property");
+            const location = compose.getAttribute("placing");
             const template = sourceDocument.getElementById(type);
 
             const src = createSource(properties, template, sourceDocument);
-            let insert = getInsert(location, parent);
+            const insert = getInsert(location, document.getElementById(location));
 
-            insert.innerHTML = insert.innerHTML + "\n" + src;
-        }
+            insert.innerHTML += `\n${src}`;
+        });
 
-        for (const apply of document.getElementsByTagName("apply")) {
-            const type = apply.getAttribute("type")
-            const properties = apply.getElementsByTagName("property")
-            const location = apply.getAttribute("placing")
+        document.querySelectorAll("apply").forEach(apply => {
+            const type = apply.getAttribute("type");
+            const properties = apply.querySelectorAll("property");
+            const location = apply.getAttribute("placing");
             const template = sourceDocument.getElementById(type);
 
             const src = createSource(properties, template, sourceDocument);
-
             const dom = PARSER.parseFromString(src, "text/html");
+            const processedElement = dom.body.firstElementChild;
 
-            const processedElement = dom.getElementsByTagName("body").item(0).firstElementChild;
-
-            processedElement.removeAttribute("id")
+            processedElement.removeAttribute("id");
 
             if (apply.hasAttribute("component-id")) {
-                processedElement.setAttribute("id", apply.getAttribute("component-id"))
+                processedElement.setAttribute("id", apply.getAttribute("component-id"));
             }
 
             const parent = document.getElementById(location);
-            let insert = getInsert(location, parent);
+            const insert = getInsert(location, parent);
 
             insert.appendChild(processedElement);
-        }
+        });
 
-        for (const child of document.getElementsByTagName("child")) {
-            const location = child.getAttribute("placing")
+        document.querySelectorAll("child").forEach(child => {
+            const location = child.getAttribute("placing");
             const parent = document.getElementById(location);
-            let insert = getInsert(location, parent);
+            const insert = getInsert(location, parent);
 
-            for (const e of child.children) {
-                insert.appendChild(e);
-            }
-        }
+            child.children.forEach(e => insert.appendChild(e));
+        });
 
-        callback()
+        callback();
     });
 }
 
