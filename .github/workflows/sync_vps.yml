@@ -1,0 +1,50 @@
+name: Sync to VPS
+
+on:
+  push:
+    branches: [ main ]  # 要同步的分支
+  workflow_dispatch:    # 允许手动触发
+
+jobs:
+  deploy:
+    name: Sync to VPS
+    runs-on: ubuntu-latest
+    steps:
+      # 检出代码
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # 获取完整历史以便正确进行增量部署
+
+      # 如果需要构建网站，在这里添加构建步骤
+      # 例如：静态网站生成器（Hugo、Jekyll等）或前端构建（React、Vue等）
+      
+      # 设置 SSH 密钥
+      - name: Set up SSH
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          known_hosts: 'placeholder'  # 临时占位符
+          
+      # 添加服务器指纹到已知主机
+      - name: Add server to known hosts
+        run: ssh-keyscan -p ${{ secrets.SSH_PORT || 22 }} ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
+      # 使用 rsync 部署文件到 VPS
+      - name: Deploy with rsync
+        run: |
+          rsync -avz --delete \
+            -e "ssh -p ${{ secrets.SSH_PORT || 22 }}" \
+            ./ \
+            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.REMOTE_PATH }}/
+            
+      # 设置文件权限为 766
+      - name: Set correct permissions
+        run: |
+          ssh -p ${{ secrets.SSH_PORT || 22 }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
+          "sudo chmod -R 766 ${{ secrets.REMOTE_PATH }}/"
+          
+      # 通知部署已完成
+      - name: Notify deployment completion
+        run: |
+          echo "Website successfully deployed to ${{ secrets.SSH_HOST }}:${{ secrets.REMOTE_PATH }} at $(date)"
