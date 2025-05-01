@@ -1,49 +1,37 @@
-name: Deploy Website with SSH Password
+name: Deploy to VPS
 
 on:
   push:
-    branches: [ main ]  # 替换为你的主分支名称
-  workflow_dispatch:    # 允许手动触发
+    branches: [ main ]  # 根据你的分支名调整
 
 jobs:
   deploy:
-    name: Deploy to VPS
     runs-on: ubuntu-latest
     steps:
-      # 检出代码
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # 获取完整历史
+          fetch-depth: 0
 
-      # 安装sshpass
+      # 如果你的静态网站需要构建步骤，在这里添加
+      # 例如:
+      # - name: Build site
+      #   run: |
+      #     npm install
+      #     npm run build
+
       - name: Install sshpass
-        run: sudo apt-get install -y sshpass
-        
-      # 使用sshpass和rsync部署文件
-      - name: Deploy with rsync using password
+        run: sudo apt-get install sshpass
+      
+      - name: Deploy to VPS via rsync
         env:
-          SSHPASS: ${{ secrets.SSH_PASSWORD }}
+          SSH_PASS: ${{ secrets.SSH_PASSWORD }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
         run: |
-          # 添加服务器到known_hosts以避免确认提示
+          # 禁用严格的主机密钥检查以避免首次连接提示
           mkdir -p ~/.ssh
-          ssh-keyscan -p ${{ secrets.SSH_PORT || 22 }} ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+          echo "StrictHostKeyChecking no" >> ~/.ssh/config
           
-          # 使用sshpass进行rsync
-          sshpass -e rsync -avz --delete \
-            -e "ssh -p ${{ secrets.SSH_PORT || 22 }}" \
-            ./ \
-            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.REMOTE_PATH }}/
-            
-      # 设置正确的文件权限
-      - name: Set correct permissions
-        env:
-          SSHPASS: ${{ secrets.SSH_PASSWORD }}
-        run: |
-          sshpass -e ssh -p ${{ secrets.SSH_PORT || 22 }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
-          "sudo chown -R safeline:safeline ${{ secrets.REMOTE_PATH }}/"
-          
-      # 通知部署完成
-      - name: Notify deployment completion
-        run: |
-          echo "Website successfully deployed to ${{ secrets.SSH_HOST }}:${{ secrets.REMOTE_PATH }} at $(date)"
+          # 使用sshpass和rsync部署文件
+          # 如果你的站点有构建步骤，确保源目录正确 (例如: ./dist/)
+          sshpass -p "$SSH_PASS" rsync -avz --delete ./ $SSH_USER@$SSH_HOST:/var/www/your-website/
