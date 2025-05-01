@@ -1,50 +1,49 @@
-name: Sync to VPS
+name: Deploy Website with SSH Password
 
 on:
   push:
-    branches: [ main ]  # 要同步的分支
+    branches: [ main ]  # 替换为你的主分支名称
   workflow_dispatch:    # 允许手动触发
 
 jobs:
   deploy:
-    name: Sync to VPS
+    name: Deploy to VPS
     runs-on: ubuntu-latest
     steps:
       # 检出代码
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # 获取完整历史以便正确进行增量部署
+          fetch-depth: 0  # 获取完整历史
 
-      # 如果需要构建网站，在这里添加构建步骤
-      # 例如：静态网站生成器（Hugo、Jekyll等）或前端构建（React、Vue等）
-      
-      # 设置 SSH 密钥
-      - name: Set up SSH
-        uses: shimataro/ssh-key-action@v2
-        with:
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          known_hosts: 'placeholder'  # 临时占位符
-          
-      # 添加服务器指纹到已知主机
-      - name: Add server to known hosts
-        run: ssh-keyscan -p ${{ secrets.SSH_PORT || 22 }} ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
-
-      # 使用 rsync 部署文件到 VPS
-      - name: Deploy with rsync
+      # 安装sshpass
+      - name: Install sshpass
+        run: sudo apt-get install -y sshpass
+        
+      # 使用sshpass和rsync部署文件
+      - name: Deploy with rsync using password
+        env:
+          SSHPASS: ${{ secrets.SSH_PASSWORD }}
         run: |
-          rsync -avz --delete \
+          # 添加服务器到known_hosts以避免确认提示
+          mkdir -p ~/.ssh
+          ssh-keyscan -p ${{ secrets.SSH_PORT || 22 }} ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+          
+          # 使用sshpass进行rsync
+          sshpass -e rsync -avz --delete \
             -e "ssh -p ${{ secrets.SSH_PORT || 22 }}" \
             ./ \
             ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.REMOTE_PATH }}/
             
-      # 设置文件权限为 766
+      # 设置正确的文件权限
       - name: Set correct permissions
+        env:
+          SSHPASS: ${{ secrets.SSH_PASSWORD }}
         run: |
-          ssh -p ${{ secrets.SSH_PORT || 22 }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
-          "sudo chmod -R 766 ${{ secrets.REMOTE_PATH }}/"
+          sshpass -e ssh -p ${{ secrets.SSH_PORT || 22 }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
+          "sudo chown -R safeline:safeline ${{ secrets.REMOTE_PATH }}/"
           
-      # 通知部署已完成
+      # 通知部署完成
       - name: Notify deployment completion
         run: |
           echo "Website successfully deployed to ${{ secrets.SSH_HOST }}:${{ secrets.REMOTE_PATH }} at $(date)"
