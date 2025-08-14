@@ -1,5 +1,0 @@
-{
-  "scripts": {
-    "deploy": "npx -y rth-host-helper@latest --site wsmcs.top --outdir ."
-  }
-}
