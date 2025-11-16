@@ -102,11 +102,11 @@ body {
 .header-bg {
     background-position-x: left;
     background-position-y: 0;
-    background: url('/assets/image/bg_light.png');
+    background: url('assets/image/bg_light.png');
 }
 
 .dark-mode .header-bg {
-    background: center 50% url('/assets/image/bg_dark.png');
+    background: center 50% url('assets/image/bg_dark.png');
 }
 
 .dark-mode .display-light {
