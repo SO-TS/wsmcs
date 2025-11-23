@@ -1,0 +1,204 @@
+/**
+ * @file main.css
+ * @description Main stylesheet for the application.
+ * Imports Tailwind CSS base, components, and utilities.
+ * Defines global CSS custom properties for theme management (light and dark modes).
+ */
+
+/* Tailwind CSS directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Global CSS Custom Properties (Variables)
+ * These variables define colors and other stylistic values that can be
+ * easily switched for theme management (e.g., light vs. dark mode).
+ */
+
+/* Base CSS Variables for Light Mode (default) */
+:root {
+    /* Glow effect color for interactive elements */
+    --glow-color: rgba(59, 115, 230, 0.3); /* Blue glow for light mode */
+
+    /* Background and text colors for cards and similar elements */
+    --card-bg-color: #f3f4f6; /* Tailwind gray-100 */
+    --text-main: #1f2937; /* Tailwind gray-800 for main text */
+    --text-sub: #4b5563; /* Tailwind gray-600 for sub-text */
+
+    /* Badge specific colors */
+    --primary-blue-badge: #2563eb; /* Tailwind blue-600 */
+    --secondary-blue-badge: #374151; /* Tailwind gray-700 */
+    --badge-owner-bg: #ef4444; /* Tailwind red-500 */
+    --badge-owner-text: #FFFFFF;
+    --badge-founder-bg: #f97316; /* Tailwind orange-500 */
+    --badge-founder-text: #FFFFFF;
+
+    /* Global body background and text colors */
+    --body-bg: #FFFFFF; /* White background */
+    --body-text: #1F2329; /* Main body text color */
+
+    /* Avatar placeholder background */
+    --avatar-bg: #d1d5db; /* Tailwind gray-300 */
+
+    /* Footer specific colors */
+    --footer-bg: #f9fafb; /* Tailwind gray-50 */
+    --footer-text: #4b5563; /* Tailwind gray-600 */
+    --footer-link-hover: #2563eb; /* Tailwind blue-600 */
+    --footer-border: #e5e7eb; /* Tailwind gray-200 */
+    --footer-social-icon: #9ca3af; /* Tailwind gray-400 */
+    --footer-social-icon-hover: #1f2937; /* Tailwind gray-800 */
+
+    /* Header specific colors */
+    --header-bg: #FFFFFF; /* White background for header */
+    --header-logo-color: #1f2937; /* Dark color for logo in light mode */
+    --header-text: #1f2937; /* Dark text for nav links in light mode */
+    --header-text-hover: #2563eb; /* Blue hover for nav links */
+    --header-button-bg: #e5e7eb; /* Light gray background for buttons */
+    --header-button-bg-hover: #d1d5db; /* Slightly darker gray on hover */
+    --header-button-text: #1f2937; /* Dark text for buttons */
+    --header-button-text-hover: #111827; /* Even darker text on hover */
+
+    /* Hero Section Button colors */
+    --hero-btn-primary-bg: #2563eb; /* blue-600 */
+    --hero-btn-primary-bg-hover: #1d4ed8; /* blue-700 */
+    --hero-btn-primary-border: #2563eb; /* blue-600 */
+    --hero-btn-primary-border-hover: #1d4ed8; /* blue-700 */
+    --hero-btn-primary-text: #FFFFFF;
+
+    --hero-btn-secondary-bg: rgba(255,255,255,0.2);
+    --hero-btn-secondary-bg-hover: rgba(255,255,255,0.3);
+    --hero-btn-secondary-border: rgba(255,255,255,0.3);
+    --hero-btn-secondary-border-hover: rgba(255,255,255,0.4);
+    --hero-btn-secondary-text: #FFFFFF;
+
+    /* Features Section colors */
+    --features-h2-color: #2563eb; /* blue-600 */
+    --features-p-color: #1f2937; /* gray-800 */
+    --feature-card-bg: #1f2937; /* gray-800 */
+    --feature-card-text: #FFFFFF;
+
+    /* CTA Section colors */
+    --cta-btn-bg: #FFFFFF;
+    --cta-btn-text: #1f2937; /* gray-800 */
+    --cta-btn-shadow: rgba(0,0,0,0.2);
+    --cta-btn-shadow-hover: rgba(0,0,0,0.3);
+}
+
+/* Dark Mode Variables */
+/* These variables override the :root variables when the 'dark' class is applied to <html> */
+.dark {
+    /* Glow effect color for interactive elements in dark mode */
+    --glow-color: rgba(147, 197, 253, 0.3); /* Lighter blue glow for dark mode (Tailwind blue-300) */
+
+    /* Background and text colors for cards and similar elements in dark mode */
+    --card-bg-color: #1f2937; /* Tailwind gray-800 */
+    --text-main: #e5e7eb; /* Tailwind gray-200 for main text */
+    --text-sub: #9ca3af; /* Tailwind gray-400 for sub-text */
+
+    /* Badge specific colors in dark mode */
+    --primary-blue-badge: #3b82f6; /* Tailwind blue-500 */
+    --secondary-blue-badge: #4b5563; /* Tailwind gray-600 */
+    --badge-owner-bg: #dc2626; /* Tailwind red-600 */
+    --badge-owner-text: #FFFFFF;
+    --badge-founder-bg: #ea580c; /* Tailwind orange-600 */
+    --badge-founder-text: #FFFFFF;
+
+    /* Global body background and text colors in dark mode */
+    --body-bg: #111827; /* Tailwind gray-900 */
+    --body-text: #e5e7eb; /* Light text color */
+
+    /* Avatar placeholder background in dark mode */
+    --avatar-bg: #4b5563; /* Tailwind gray-600 */
+
+    /* Footer specific colors in dark mode */
+    --footer-bg: #1f2937; /* Tailwind gray-800 */
+    --footer-text: #9ca3af; /* Tailwind gray-400 */
+    --footer-link-hover: #60a5fa; /* Tailwind blue-400 */
+    --footer-border: #374151; /* Tailwind gray-700 */
+    --footer-social-icon: #6b7280; /* Tailwind gray-500 */
+    --footer-social-icon-hover: #e5e7eb; /* Tailwind gray-200 */
+
+    /* Header specific colors in dark mode */
+    --header-bg: #1f2937; /* Dark background for header */
+    --header-logo-color: #FFFFFF; /* White color for logo in dark mode */
+    --header-text: rgba(255,255,255,0.8);
+    --header-text-hover: #FFFFFF;
+    --header-button-bg: rgba(255,255,255,0.05);
+    --header-button-bg-hover: rgba(255,255,255,0.1);
+    --header-button-text: rgba(255,255,255,0.8);
+    --header-button-text-hover: #FFFFFF;
+
+    /* Hero Section Button colors in dark mode */
+    --hero-btn-primary-bg: #3b82f6; /* blue-500 */
+    --hero-btn-primary-bg-hover: #2563eb; /* blue-600 */
+    --hero-btn-primary-border: #3b82f6; /* blue-500 */
+    --hero-btn-primary-border-hover: #2563eb; /* blue-600 */
+    --hero-btn-primary-text: #FFFFFF;
+
+    --hero-btn-secondary-bg: rgba(255,255,255,0.1);
+    --hero-btn-secondary-bg-hover: rgba(255,255,255,0.2);
+    --hero-btn-secondary-border: rgba(255,255,255,0.2);
+    --hero-btn-secondary-border-hover: rgba(255,255,255,0.3);
+    --hero-btn-secondary-text: #FFFFFF;
+
+    /* Features Section colors in dark mode */
+    --features-h2-color: #60a5fa; /* blue-400 */
+    --features-p-color: #e5e7eb; /* gray-200 */
+    --feature-card-bg: #374151; /* gray-700 */
+    --feature-card-text: #e5e7eb; /* gray-200 */
+
+    /* CTA Section colors in dark mode */
+    --cta-btn-bg: #374151; /* gray-700 */
+    --cta-btn-text: #e5e7eb; /* gray-200 */
+    --cta-btn-shadow: rgba(0,0,0,0.4);
+    --cta-btn-shadow-hover: rgba(0,0,0,0.5);
+}
+
+/*
+ * Global body styles
+ * Applies theme-aware background and text colors to the body,
+ * with a smooth transition for theme changes.
+ */
+body {
+    background-color: var(--body-bg);
+    color: var(--body-text);
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+/*
+ * Global styles for the interactive edge glow effect.
+ * These styles are applied to any element using the `v-edge-glow` directive.
+ */
+.v-edge-glow-container {
+  position: relative;
+  z-index: 1; /* Ensures the element content is above the pseudo-element glow */
+  --glow-opacity: 0; /* Custom property to control the glow's opacity via JavaScript */
+  /* Background color is expected to be set by the element itself or other theme variables */
+}
+
+.v-edge-glow-container::before {
+  content: '';
+  position: absolute;
+  top: 0; /* Position relative to the container */
+  left: 0; /* Position relative to the container */
+  width: 100%; /* Same size as the container */
+  height: 100%; /* Same size as the container */
+  border-radius: inherit; /* Inherit the element's border-radius for rounded corners */
+  background: radial-gradient(
+    150px circle at var(--mouse-x) var(--mouse-y), /* Smaller circle for tighter glow */
+    var(--glow-color) 0%, /* Theme-aware glow color at the center of the gradient */
+    transparent 70% /* Fades to transparent, creating the glow effect */
+  );
+  /* Removed transform: translate(...) as it was causing the "floating" effect */
+  opacity: var(--glow-opacity); /* Controls visibility, updated by JavaScript */
+  transition: opacity 0.3s ease-in-out; /* Smooth fade-out transition for the glow */
+  pointer-events: none; /* Ensures mouse events pass through to the element content */
+  z-index: 0; /* Positions the glow between the element's background and its content */
+}
+
+/* Page Load Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
