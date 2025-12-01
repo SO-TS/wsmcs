@@ -20,15 +20,15 @@ const heroBackgroundStyle = {
 
 <template>
   <!-- Hero Section container -->
-  <section class="min-h-screen bg-cover bg-center flex items-center text-white relative" :style="heroBackgroundStyle">
+  <section class="min-h-screen bg-cover bg-top flex items-center text-white relative -mt-[70px] pt-[70px]" :style="heroBackgroundStyle">
     <!-- Main content wrapper -->
-    <div class="max-w-7xl mx-auto px-6 w-full flex justify-start items-center -mt-20">
+    <div class="max-w-7xl mx-auto px-6 w-full flex justify-start items-center">
       <!-- Content block (text + buttons) -->
       <div class="max-w-xl fade-in-up">
         <!-- Hero Title -->
         <h1 class="text-6xl font-bold mb-4 tracking-wide">{{ t('hero.title') }}</h1> <!-- Changed to text-6xl -->
         <!-- Hero Subtitle -->
-        <p class="text-2xl mb-8 opacity-90">{{ t('hero.subtitle') }}</p> <!-- Changed to text-2xl -->
+        <p class="text-2xl mb-8 opacity-90 font-light">{{ t('hero.subtitle') }}</p> <!-- Changed to text-2xl -->
         <!-- Call-to-action buttons, underneath text -->
         <div class="flex space-x-4">
           <a href="#" class="hero-btn-primary">{{ t('hero.joinGroup') }}</a>
