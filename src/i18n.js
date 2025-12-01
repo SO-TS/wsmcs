@@ -53,7 +53,7 @@ const messages = {
     cta: {
         title: '立即加入 繁星之望',
         version: '1.13-1.21.3 Java版 / 最新基岩版',
-        copy_ip: 'server.wsmcs.top',
+        copy_ip: 'play.wsmcs.top',
         copied_alert: '已复制地址!',
         copy_failed_alert: '复制失败，请手动复制。',
         note: '通过正版、LittleSkin、红石皮肤站进入服务器。',
@@ -129,7 +129,7 @@ const messages = {
     cta: {
         title: 'Join Star Wish Now',
         version: '1.13-1.21.3 Java / Latest Bedrock',
-        copy_ip: 'server.wsmcs.top',
+        copy_ip: 'play.wsmcs.top',
         copied_alert: 'IP Copied!',
         copy_failed_alert: 'Failed to copy. Please copy manually.',
         note: 'Join via official launcher, LittleSkin, or RedstoneSkin.',
