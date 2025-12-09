@@ -5,7 +5,7 @@
  */
 
 import { useI18n } from 'vue-i18n';
-import Logo from './Logo.vue';
+import logoUrl from '@/assets/wsmcs-logo.svg'
 import IconBilibili from "@/components/icons/IconBilibili.vue";
 import IconYoutube from "@/components/icons/IconYoutube.vue";
 import IconKoolepa from "@/components/icons/IconKoolepa.vue";
@@ -22,7 +22,7 @@ const { t } = useI18n();
         <!-- Brand Information -->
         <div class="md:col-span-3"> <!-- Brand info now takes 3 columns -->
           <div class="font-bold text-lg mb-4 flex items-center footer-logo-text">
-            <Logo class="h-6 mr-2" />
+            <img :src="logoUrl" alt="WSMCS Logo" class="w-6 h-6 mr-2 object-contain aspect-square block" />
             {{ t('footer.brand_name') }}
           </div>
           <p class="mb-5 max-w-xs footer-desc-text">{{ t('footer.brand_desc') }}</p>

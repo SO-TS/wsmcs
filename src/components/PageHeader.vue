@@ -6,7 +6,7 @@
 
 import { ref, onMounted, onUnmounted } from 'vue';
 import { useI18n } from 'vue-i18n';
-import Logo from './Logo.vue';
+import logoUrl from '@/assets/wsmcs-logo.svg'
 
 const { t } = useI18n();
 
@@ -39,7 +39,7 @@ onUnmounted(() => {
         class="logo-container flex items-center font-bold text-xl header-logo-color transition-all duration-300 ease-in-out"
         :class="{ 'logo--hidden': isShrunk }"
       >
-        <Logo class="h-8 mr-2.5 flex-shrink-0" />
+        <img :src="logoUrl" alt="WSMCS Logo" class="w-8 h-8 mr-2.5 flex-shrink-0 object-contain aspect-square block" />
       </a>
       
       <!-- New Navigation Links (Right) -->
@@ -72,7 +72,7 @@ header {
   width: auto;
   opacity: 1;
   transform: scale(1);
-  overflow: hidden;
+  overflow: visible;
 }
 
 .logo--hidden {
