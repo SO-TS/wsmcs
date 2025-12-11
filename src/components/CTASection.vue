@@ -8,10 +8,10 @@
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { IMAGES } from '../config/images';
-import Toast from './Toast.vue';
 
 const { t } = useI18n();
-const toastNotification = ref(null);
+const isCopied = ref(false);
+let copyTimeoutId = null;
 
 /**
  * Dynamically sets the background image for the CTA section.
@@ -22,26 +22,15 @@ const ctaBackgroundStyle = {
 };
 
 /**
- * Triggers a new toast notification.
- * @param {string} message - The message to display in the toast.
- */
-function triggerToast(message) {
-  toastNotification.value = {
-    id: Date.now(), // Use timestamp as a unique ID
-    message: message,
-  };
-}
-
-/**
  * Copies the server IP address to the clipboard, with a fallback for insecure contexts.
- * Provides user feedback via a toast notification for success or failure.
+ * Shows a brief "Copied" feedback similar to VuePress code blocks.
  */
 function copyToClipboard() {
   const textToCopy = t('cta.copy_ip');
 
   if (navigator.clipboard && window.isSecureContext) {
     navigator.clipboard.writeText(textToCopy).then(() => {
-      triggerToast(t('cta.copied_alert'));
+      showCopiedFeedback();
     }).catch(err => {
       console.error('Failed to copy address using clipboard API: ', err);
       fallbackCopyToClipboard(textToCopy);
@@ -49,6 +38,23 @@ function copyToClipboard() {
   } else {
     fallbackCopyToClipboard(textToCopy);
   }
+}
+
+/**
+ * Shows the "Copied" feedback for a brief moment, similar to VuePress.
+ */
+function showCopiedFeedback() {
+  isCopied.value = true;
+  
+  // Clear any existing timeout
+  if (copyTimeoutId) {
+    clearTimeout(copyTimeoutId);
+  }
+  
+  // Reset after 2 seconds
+  copyTimeoutId = setTimeout(() => {
+    isCopied.value = false;
+  }, 2000);
 }
 
 /**
@@ -71,13 +77,10 @@ function fallbackCopyToClipboard(text) {
   try {
     const successful = document.execCommand('copy');
     if (successful) {
-      triggerToast(t('cta.copied_alert'));
-    } else {
-      triggerToast(t('cta.copy_failed_alert'));
+      showCopiedFeedback();
     }
   } catch (err) {
     console.error('Fallback copy failed: ', err);
-    triggerToast(t('cta.copy_failed_alert'));
   }
 
   document.body.removeChild(textArea);
@@ -94,18 +97,25 @@ function fallbackCopyToClipboard(text) {
       <span class="inline-block text-base opacity-80 mb-2">{{ t('cta.version') }}</span>
       <br>
       <!-- Interactive Server Address Box -->
-      <div
-        v-edge-glow
-        @click="copyToClipboard"
-        class="cta-button px-16 py-2.5 rounded-lg text-xl font-bold inline-flex items-center cursor-pointer shadow-lg mb-4 select-all transition-all duration-300 ease-in-out v-edge-glow-container"
-      >
-        {{ t('cta.copy_ip') }}
+      <div class="relative inline-block">
+        <div
+          v-edge-glow
+          @click="copyToClipboard"
+          class="cta-button px-16 py-2.5 rounded-lg text-xl font-bold inline-flex items-center cursor-pointer shadow-lg mb-4 select-all transition-all duration-300 ease-in-out v-edge-glow-container"
+        >
+          {{ t('cta.copy_ip') }}
+        </div>
+        <!-- VuePress-style copy feedback -->
+        <Transition name="copy-feedback">
+          <div v-if="isCopied" class="copy-feedback">
+            {{ t('cta.copied_alert') }}
+          </div>
+        </Transition>
       </div>
       <!-- Footer Note -->
       <p class="text-xs opacity-50">{{ t('cta.note') }}</p>
     </div>
   </section>
-  <Toast :notification="toastNotification" />
 </template>
 
 <style scoped>
@@ -115,8 +125,42 @@ function fallbackCopyToClipboard(text) {
   box-shadow: 0 4px 15px var(--cta-btn-shadow);
   opacity: 0.7; /* Added for semi-transparency */
 }
+
 .cta-button:hover {
   box-shadow: 0 4px 20px var(--cta-btn-shadow-hover);
   opacity: 1; /* Make it fully opaque on hover for better interaction feedback */
+}
+
+/* VuePress-style copy feedback */
+.copy-feedback {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  pointer-events: none;
+  z-index: 10;
+  white-space: nowrap;
+}
+
+/* Transition for copy feedback */
+.copy-feedback-enter-active,
+.copy-feedback-leave-active {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.copy-feedback-enter-from {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.9);
+}
+
+.copy-feedback-leave-to {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.9);
 }
 </style>
