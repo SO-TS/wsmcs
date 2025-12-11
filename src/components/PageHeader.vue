@@ -6,7 +6,7 @@
 
 import { ref, onMounted, onUnmounted } from 'vue';
 import { useI18n } from 'vue-i18n';
-import logoUrl from '@/assets/wsmcs-logo.svg'
+import logoUrl from '@/assets/wsmcs-logo.png'
 
 const { t } = useI18n();
 
