@@ -81,7 +81,7 @@ function fallbackCopyToClipboard(text) {
 
 <template>
   <!-- CTA Section container -->
-  <section class="bg-cover bg-center text-center text-white py-16" :style="ctaBackgroundStyle">
+  <section id="cta-section" class="bg-cover bg-center text-center text-white py-16" :style="ctaBackgroundStyle">
     <div class="max-w-7xl mx-auto px-6">
       <!-- CTA Title -->
       <h2 class="text-4xl font-bold mb-3.5">{{ t('cta.title') }}</h2>
@@ -89,7 +89,7 @@ function fallbackCopyToClipboard(text) {
       <span class="inline-block text-base opacity-80 mb-2">{{ t('cta.version') }}</span>
       <br>
       <!-- Interactive Server Address Box -->
-      <div class="relative inline-block" @mouseenter="isHovered = true" @mouseleave="isHovered = false; showCheckmark = false; isCopied = false">
+      <div class="relative inline-block" @mouseenter="isHovered = true" @mouseleave="isHovered = false; showCheckmark = false">
         <div
           v-edge-glow
           @click="copyToClipboard"
