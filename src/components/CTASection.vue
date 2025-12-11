@@ -10,8 +10,9 @@ import { useI18n } from 'vue-i18n';
 import { IMAGES } from '../config/images';
 
 const { t } = useI18n();
+const isHovered = ref(false);
 const isCopied = ref(false);
-let copyTimeoutId = null;
+const showCheckmark = ref(false);
 
 /**
  * Dynamically sets the background image for the CTA section.
@@ -41,20 +42,11 @@ function copyToClipboard() {
 }
 
 /**
- * Shows the "Copied" feedback for a brief moment, similar to VuePress.
+ * Shows the checkmark feedback immediately after copy.
  */
 function showCopiedFeedback() {
   isCopied.value = true;
-  
-  // Clear any existing timeout
-  if (copyTimeoutId) {
-    clearTimeout(copyTimeoutId);
-  }
-  
-  // Reset after 2 seconds
-  copyTimeoutId = setTimeout(() => {
-    isCopied.value = false;
-  }, 2000);
+  showCheckmark.value = true;
 }
 
 /**
@@ -97,20 +89,38 @@ function fallbackCopyToClipboard(text) {
       <span class="inline-block text-base opacity-80 mb-2">{{ t('cta.version') }}</span>
       <br>
       <!-- Interactive Server Address Box -->
-      <div class="relative inline-block">
+      <div class="relative inline-block" @mouseenter="isHovered = true" @mouseleave="isHovered = false; showCheckmark = false; isCopied = false">
         <div
           v-edge-glow
           @click="copyToClipboard"
-          class="cta-button px-16 py-2.5 rounded-lg text-xl font-bold inline-flex items-center cursor-pointer shadow-lg mb-4 select-all transition-all duration-300 ease-in-out v-edge-glow-container"
+          class="cta-button px-16 py-2.5 rounded-lg text-xl font-bold inline-flex items-center cursor-pointer shadow-lg mb-4 select-all transition-all duration-300 ease-in-out v-edge-glow-container relative"
         >
           {{ t('cta.copy_ip') }}
+          <!-- VuePress-style copy button -->
+          <Transition name="copy-button">
+            <button
+              v-if="isHovered && !isCopied"
+              class="copy-button"
+              @click.stop="copyToClipboard"
+              :title="t('cta.copy_ip')"
+            >
+              <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+            </button>
+            <!-- Checkmark icon shown after copy -->
+            <button
+              v-else-if="showCheckmark && isHovered"
+              class="copy-button"
+              disabled
+            >
+              <svg class="copy-icon checkmark-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </button>
+          </Transition>
         </div>
-        <!-- VuePress-style copy feedback -->
-        <Transition name="copy-feedback">
-          <div v-if="isCopied" class="copy-feedback">
-            {{ t('cta.copied_alert') }}
-          </div>
-        </Transition>
       </div>
       <!-- Footer Note -->
       <p class="text-xs opacity-50">{{ t('cta.note') }}</p>
@@ -131,36 +141,53 @@ function fallbackCopyToClipboard(text) {
   opacity: 1; /* Make it fully opaque on hover for better interaction feedback */
 }
 
-/* VuePress-style copy feedback */
-.copy-feedback {
+/* Copy button styling */
+.copy-button {
   position: absolute;
+  right: 8px;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.8);
-  color: #fff;
-  padding: 8px 12px;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: 500;
-  pointer-events: none;
-  z-index: 10;
-  white-space: nowrap;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 4px 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
+  transition: opacity 0.2s ease-in-out;
 }
 
-/* Transition for copy feedback */
-.copy-feedback-enter-active,
-.copy-feedback-leave-active {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+.copy-button:hover {
+  opacity: 1;
 }
 
-.copy-feedback-enter-from {
+.copy-icon {
+  width: 18px;
+  height: 18px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.checkmark-icon {
+  color: #4ade80;
+}
+
+/* Copy button transition */
+.copy-button-enter-active,
+.copy-button-leave-active {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.copy-button-enter-from {
   opacity: 0;
-  transform: translate(-50%, -50%) scale(0.9);
+  transform: translateY(-50%) scale(0.8);
 }
 
-.copy-feedback-leave-to {
+.copy-button-leave-to {
   opacity: 0;
-  transform: translate(-50%, -50%) scale(0.9);
+  transform: translateY(-50%) scale(0.8);
 }
+
 </style>
