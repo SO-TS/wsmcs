@@ -5,7 +5,7 @@
  */
 
 import { useI18n } from 'vue-i18n';
-import logoUrl from '@/assets/wsmcs-logo.svg'
+import logoUrl from '@/assets/wsmcs-logo.png'
 import IconBilibili from "@/components/icons/IconBilibili.vue";
 import IconYoutube from "@/components/icons/IconYoutube.vue";
 import IconKoolepa from "@/components/icons/IconKoolepa.vue";
