@@ -32,14 +32,14 @@ const { t } = useI18n();
           <h4 class="mb-5 font-semibold footer-col-title">{{ t('footer.service_title') }}</h4>
           <ul>
             <li class="mb-3"><a href="#" class="transition-colors duration-300 ease-in-out footer-link">{{ t('footer.service_1') }}</a></li>
-            <li class="mb-3"><a href="#" class="transition-colors duration-300 ease-in-out footer-link">{{ t('footer.service_2') }}</a></li>
+            <li class="mb-3"><a href="https://status.wsmcs.tops" class="transition-colors duration-300 ease-in-out footer-link">{{ t('footer.service_2') }}</a></li>
           </ul>
         </div>
         <!-- Documentation Column -->
         <div class="footer-col">
           <h4 class="mb-5 font-semibold footer-col-title">{{ t('footer.docs_title') }}</h4>
           <ul>
-            <li class="mb-3"><a href="#" class="transition-colors duration-300 ease-in-out footer-link">{{ t('footer.docs_1') }}</a></li>
+            <li class="mb-3"><a href="https://docs.wsmcs.top" class="transition-colors duration-300 ease-in-out footer-link">{{ t('footer.docs_1') }}</a></li>
             <li class="mb-3"><a href="#" class="transition-colors duration-300 ease-in-out footer-link">{{ t('footer.docs_2') }}</a></li>
             <li class="mb-3"><a href="#" class="transition-colors duration-300 ease-in-out footer-link">{{ t('footer.docs_3') }}</a></li>
             </ul>
