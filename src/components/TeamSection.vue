@@ -23,102 +23,116 @@ const { t } = useI18n();
       <!-- Grid for team member cards -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <!-- Team Member Card 1 -->
-        <div v-edge-glow class="team-card-glow relative overflow-hidden rounded-xl p-5 flex items-center v-edge-glow-container">
-          <div class="w-16 h-16 rounded-full mr-4 flex-shrink-0 avatar-bg relative">
-            <img :src="IMAGES.avatarApart" :alt="t('team.member_1_name')" class="w-full h-full object-cover rounded-full">
-            <span class="badge-on-avatar text-xs px-1.5 py-0.5 rounded badge-owner text-white font-normal">{{ t('team.member_1_badge') }}</span>
+        <a href="https://qm.qq.com/q/EDEkjS62pq" target="_blank" rel="noopener noreferrer" class="team-card-link">
+          <div v-edge-glow class="team-card-glow relative overflow-hidden rounded-xl p-5 flex items-center v-edge-glow-container">
+            <div class="w-16 h-16 rounded-full mr-4 flex-shrink-0 avatar-bg relative">
+              <img :src="IMAGES.avatarApart" :alt="t('team.member_1_name')" class="w-full h-full object-cover rounded-full">
+              <span class="badge-on-avatar text-xs px-1.5 py-0.5 rounded badge-owner text-white font-normal">{{ t('team.member_1_badge') }}</span>
+            </div>
+            <div class="flex-grow">
+              <h4 class="text-base font-semibold mb-1">
+                {{ t('team.member_1_name') }}
+              </h4>
+              <p class="text-sm">{{ t('team.member_1_role') }}</p>
+            </div>
           </div>
-          <div class="flex-grow">
-            <h4 class="text-base font-semibold mb-1">
-              {{ t('team.member_1_name') }}
-            </h4>
-            <p class="text-sm">{{ t('team.member_1_role') }}</p>
-          </div>
-        </div>
+        </a>
         <!-- Team Member Card 2 -->
-        <div v-edge-glow class="team-card-glow relative overflow-hidden rounded-xl p-5 flex items-center v-edge-glow-container">
-          <div class="w-16 h-16 rounded-full mr-4 flex-shrink-0 avatar-bg relative">
-            <img :src="IMAGES.avatarTom" :alt="t('team.member_2_name')" class="w-full h-full object-cover rounded-full">
-            <div class="stacked-badges"> <!-- New container for stacked badges -->
-              <span class="badge-item text-xs px-1.5 py-0.5 rounded badge-owner text-white font-normal">{{ t('team.member_2_badge') }}</span>
-              <span class="badge-item text-xs px-1.5 py-0.5 rounded badge-supporter text-white font-normal">{{ t('team.member_2_supporter_badge') }}</span> <!-- New badge -->
+        <a href="https://qm.qq.com/q/EDEkjS62pq" target="_blank" rel="noopener noreferrer" class="team-card-link">
+          <div v-edge-glow class="team-card-glow relative overflow-hidden rounded-xl p-5 flex items-center v-edge-glow-container">
+            <div class="w-16 h-16 rounded-full mr-4 flex-shrink-0 avatar-bg relative">
+              <img :src="IMAGES.avatarTom" :alt="t('team.member_2_name')" class="w-full h-full object-cover rounded-full">
+              <div class="stacked-badges"> <!-- New container for stacked badges -->
+                <span class="badge-item text-xs px-1.5 py-0.5 rounded badge-owner text-white font-normal">{{ t('team.member_2_badge') }}</span>
+                <span class="badge-item text-xs px-1.5 py-0.5 rounded badge-supporter text-white font-normal">{{ t('team.member_2_supporter_badge') }}</span> <!-- New badge -->
+              </div>
+            </div>
+            <div class="flex-grow">
+              <h4 class="text-base font-semibold mb-1">
+                {{ t('team.member_2_name') }}
+              </h4>
+              <p class="text-sm">{{ t('team.member_2_role') }}</p>
             </div>
           </div>
-          <div class="flex-grow">
-            <h4 class="text-base font-semibold mb-1">
-              {{ t('team.member_2_name') }}
-            </h4>
-            <p class="text-sm">{{ t('team.member_2_role') }}</p>
-          </div>
-        </div>
+        </a>
         <!-- Team Member Card 3 -->
-        <div v-edge-glow class="team-card-glow relative overflow-hidden rounded-xl p-5 flex items-center v-edge-glow-container">
-          <div class="w-16 h-16 rounded-full mr-4 flex-shrink-0 avatar-bg relative">
-            <img :src="IMAGES.avatarFrank" :alt="t('team.member_3_name')" class="w-full h-full object-cover rounded-full">
-            <div class="stacked-badges"> <!-- New container for stacked badges -->
-              <span class="badge-item text-xs px-1.5 py-0.5 rounded badge-owner text-white font-normal">{{ t('team.member_3_badge') }}</span>
-              <span class="badge-item text-xs px-1.5 py-0.5 rounded badge-supporter text-white font-normal">{{ t('team.member_3_supporter_badge') }}</span> <!-- New badge -->
+        <a href="https://qm.qq.com/q/EDEkjS62pq" target="_blank" rel="noopener noreferrer" class="team-card-link">
+          <div v-edge-glow class="team-card-glow relative overflow-hidden rounded-xl p-5 flex items-center v-edge-glow-container">
+            <div class="w-16 h-16 rounded-full mr-4 flex-shrink-0 avatar-bg relative">
+              <img :src="IMAGES.avatarFrank" :alt="t('team.member_3_name')" class="w-full h-full object-cover rounded-full">
+              <div class="stacked-badges"> <!-- New container for stacked badges -->
+                <span class="badge-item text-xs px-1.5 py-0.5 rounded badge-owner text-white font-normal">{{ t('team.member_3_badge') }}</span>
+                <span class="badge-item text-xs px-1.5 py-0.5 rounded badge-supporter text-white font-normal">{{ t('team.member_3_supporter_badge') }}</span> <!-- New badge -->
+              </div>
+            </div>
+            <div class="flex-grow">
+              <h4 class="text-base font-semibold mb-1">
+                {{ t('team.member_3_name') }}
+              </h4>
+              <p class="text-sm">{{ t('team.member_3_role') }}</p>
             </div>
           </div>
-          <div class="flex-grow">
-            <h4 class="text-base font-semibold mb-1">
-              {{ t('team.member_3_name') }}
-            </h4>
-            <p class="text-sm">{{ t('team.member_3_role') }}</p>
-          </div>
-        </div>
+        </a>
         <!-- Team Member Card 4 -->
-        <div v-edge-glow class="team-card-glow relative overflow-hidden rounded-xl p-5 flex items-center v-edge-glow-container">
-          <div class="w-16 h-16 rounded-full mr-4 flex-shrink-0 avatar-bg relative">
-            <img :src="IMAGES.avatarCoco" :alt="t('team.member_4_name')" class="w-full h-full object-cover rounded-full">
-            <span class="badge-on-avatar text-xs px-1.5 py-0.5 rounded badge-founder text-white font-normal">{{ t('team.member_4_badge') }}</span>
+        <a href="https://qm.qq.com/q/EDEkjS62pq" target="_blank" rel="noopener noreferrer" class="team-card-link">
+          <div v-edge-glow class="team-card-glow relative overflow-hidden rounded-xl p-5 flex items-center v-edge-glow-container">
+            <div class="w-16 h-16 rounded-full mr-4 flex-shrink-0 avatar-bg relative">
+              <img :src="IMAGES.avatarCoco" :alt="t('team.member_4_name')" class="w-full h-full object-cover rounded-full">
+              <span class="badge-on-avatar text-xs px-1.5 py-0.5 rounded badge-founder text-white font-normal">{{ t('team.member_4_badge') }}</span>
+            </div>
+            <div class="flex-grow">
+              <h4 class="text-base font-semibold mb-1">
+                {{ t('team.member_4_name') }}
+              </h4>
+              <p class="text-sm">{{ t('team.member_4_role') }}</p>
+            </div>
           </div>
-          <div class="flex-grow">
-            <h4 class="text-base font-semibold mb-1">
-              {{ t('team.member_4_name') }}
-            </h4>
-            <p class="text-sm">{{ t('team.member_4_role') }}</p>
-          </div>
-        </div>
+        </a>
         <!-- Team Member Card 5 -->
-        <div v-edge-glow class="team-card-glow relative overflow-hidden rounded-xl p-5 flex items-center v-edge-glow-container">
-          <div class="w-16 h-16 rounded-full mr-4 flex-shrink-0 avatar-bg relative">
-            <img :src="IMAGES.avatarSteve" :alt="t('team.member_5_name')" class="w-full h-full object-cover rounded-full">
-            <span class="badge-on-avatar text-xs px-1.5 py-0.5 rounded badge-founder text-white font-normal">{{ t('team.member_5_badge') }}</span>
+        <a href="https://qm.qq.com/q/EDEkjS62pq" target="_blank" rel="noopener noreferrer" class="team-card-link">
+          <div v-edge-glow class="team-card-glow relative overflow-hidden rounded-xl p-5 flex items-center v-edge-glow-container">
+            <div class="w-16 h-16 rounded-full mr-4 flex-shrink-0 avatar-bg relative">
+              <img :src="IMAGES.avatarSteve" :alt="t('team.member_5_name')" class="w-full h-full object-cover rounded-full">
+              <span class="badge-on-avatar text-xs px-1.5 py-0.5 rounded badge-founder text-white font-normal">{{ t('team.member_5_badge') }}</span>
+            </div>
+            <div class="flex-grow">
+              <h4 class="text-base font-semibold mb-1">
+                {{ t('team.member_5_name') }}
+              </h4>
+              <p class="text-sm">{{ t('team.member_5_role') }}</p>
+            </div>
           </div>
-          <div class="flex-grow">
-            <h4 class="text-base font-semibold mb-1">
-              {{ t('team.member_5_name') }}
-            </h4>
-            <p class="text-sm">{{ t('team.member_5_role') }}</p>
-          </div>
-        </div>
+        </a>
         <!-- Team Member Card 6 -->
-        <div v-edge-glow class="team-card-glow relative overflow-hidden rounded-xl p-5 flex items-center v-edge-glow-container">
-          <div class="w-16 h-16 rounded-full mr-4 flex-shrink-0 avatar-bg relative">
-            <img :src="IMAGES.avatarSean" :alt="t('team.member_6_name')" class="w-full h-full object-cover rounded-full">
-            <span class="badge-on-avatar text-xs px-1.5 py-0.5 rounded badge-founder text-white font-normal">{{ t('team.member_6_badge') }}</span>
+        <a href="https://qm.qq.com/q/EDEkjS62pq" target="_blank" rel="noopener noreferrer" class="team-card-link">
+          <div v-edge-glow class="team-card-glow relative overflow-hidden rounded-xl p-5 flex items-center v-edge-glow-container">
+            <div class="w-16 h-16 rounded-full mr-4 flex-shrink-0 avatar-bg relative">
+              <img :src="IMAGES.avatarSean" :alt="t('team.member_6_name')" class="w-full h-full object-cover rounded-full">
+              <span class="badge-on-avatar text-xs px-1.5 py-0.5 rounded badge-founder text-white font-normal">{{ t('team.member_6_badge') }}</span>
+            </div>
+            <div class="flex-grow">
+              <h4 class="text-base font-semibold mb-1">
+                {{ t('team.member_6_name') }}
+              </h4>
+              <p class="text-sm">{{ t('team.member_6_role') }}</p>
+            </div>
           </div>
-          <div class="flex-grow">
-            <h4 class="text-base font-semibold mb-1">
-              {{ t('team.member_6_name') }}
-            </h4>
-            <p class="text-sm">{{ t('team.member_6_role') }}</p>
-          </div>
-        </div>
+        </a>
         <!-- Team Member Card 7 -->
-        <div v-edge-glow class="team-card-glow relative overflow-hidden rounded-xl p-5 flex items-center v-edge-glow-container">
-          <div class="w-16 h-16 rounded-full mr-4 flex-shrink-0 avatar-bg relative">
-            <img :src="IMAGES.avatarAlves" :alt="t('team.member_7_name')" class="w-full h-full object-cover rounded-full">
-            <span class="badge-on-avatar text-xs px-1.5 py-0.5 rounded badge-founder text-white font-normal">{{ t('team.member_7_badge') }}</span>
+        <a href="https://qm.qq.com/q/EDEkjS62pq" target="_blank" rel="noopener noreferrer" class="team-card-link">
+          <div v-edge-glow class="team-card-glow relative overflow-hidden rounded-xl p-5 flex items-center v-edge-glow-container">
+            <div class="w-16 h-16 rounded-full mr-4 flex-shrink-0 avatar-bg relative">
+              <img :src="IMAGES.avatarAlves" :alt="t('team.member_7_name')" class="w-full h-full object-cover rounded-full">
+              <span class="badge-on-avatar text-xs px-1.5 py-0.5 rounded badge-founder text-white font-normal">{{ t('team.member_7_badge') }}</span>
+            </div>
+            <div class="flex-grow">
+              <h4 class="text-base font-semibold mb-1">
+                {{ t('team.member_7_name') }}
+              </h4>
+              <p class="text-sm">{{ t('team.member_7_role') }}</p>
+            </div>
           </div>
-          <div class="flex-grow">
-            <h4 class="text-base font-semibold mb-1">
-              {{ t('team.member_7_name') }}
-            </h4>
-            <p class="text-sm">{{ t('team.member_7_role') }}</p>
-          </div>
-        </div>
+        </a>
       </div>
     </div>
   </section>
@@ -130,6 +144,22 @@ const { t } = useI18n();
   z-index: 1; /* Ensures the card content is above the pseudo-element glow */
   background-color: var(--card-bg-color); /* Theme-aware background color */
   color: var(--text-main); /* Theme-aware default text color */
+}
+
+/* Styles for team card link wrapper */
+.team-card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.team-card-link:hover {
+  transform: translateY(-4px);
+}
+
+.team-card-link:hover .team-card-glow {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 /* Theme-aware background for avatar placeholders */
