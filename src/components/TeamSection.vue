@@ -23,7 +23,7 @@ const { t } = useI18n();
       <!-- Grid for team member cards -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <!-- Team Member Card 1 -->
-        <a href="https://qm.qq.com/q/EDEkjS62pq" target="_blank" rel="noopener noreferrer" class="team-card-link">
+        <a href="https://qm.qq.com/q/3Sf7Bibsli" target="_blank" rel="noopener noreferrer" class="team-card-link">
           <div v-edge-glow class="team-card-glow relative overflow-hidden rounded-xl p-5 flex items-center v-edge-glow-container">
             <div class="w-16 h-16 rounded-full mr-4 flex-shrink-0 avatar-bg relative">
               <img :src="IMAGES.avatarApart" :alt="t('team.member_1_name')" class="w-full h-full object-cover rounded-full">
