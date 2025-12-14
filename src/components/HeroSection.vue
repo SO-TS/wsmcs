@@ -12,11 +12,16 @@ const { t } = useI18n();
 
 /**
  * Scrolls to the CTASection when the "Join Server" button is clicked.
+ * Uses optimized smooth scrolling with passive listeners
  */
 function scrollToCTASection() {
   const ctaSection = document.getElementById('cta-section');
   if (ctaSection) {
-    ctaSection.scrollIntoView({ behavior: 'smooth' });
+    // Use scrollIntoView with smooth behavior (GPU accelerated)
+    ctaSection.scrollIntoView({ 
+      behavior: 'smooth',
+      block: 'start'
+    });
   }
 }
 

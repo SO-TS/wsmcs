@@ -43,15 +43,15 @@
     <link rel="preconnect" href="https://q1.qlogo.cn" crossorigin>
     
     <title>繁星之望服务器 - WSMCS</title>
-    <!-- MiSans Font - Primary font, Chinese optimized sans-serif -->
-    <link href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/MiSans-Regular.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
-    <link href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/MiSans-Bold.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
-    <!-- Maple Mono Font Fallback - Using multiple CDN sources for optimal performance -->
-    <!-- Chinese mainland optimized CDN (HirokoIO) - Regular and Bold weights -->
-    <link href="https://cdn.jsdelivr.net/gh/HirokoIO/maplemonoFont/MapleMonoNF-Regular.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
-    <link href="https://cdn.jsdelivr.net/gh/HirokoIO/maplemonoFont/MapleMonoNF-Bold.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
-    <!-- Fallback for international users -->
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Resource timing hints for critical resources -->
+    <!-- Preload critical fonts for better LCP -->
+    <link href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/MiSans-Regular.woff2" rel="preload" as="font" type="font/woff2" crossorigin fetchpriority="high">
+    <link href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/MiSans-Bold.woff2" rel="preload" as="font" type="font/woff2" crossorigin fetchpriority="high">
+    
+    <!-- Prefetch non-critical fonts -->
+    <link href="https://cdn.jsdelivr.net/gh/HirokoIO/maplemonoFont/MapleMonoNF-Regular.woff2" rel="prefetch" as="font" type="font/woff2" crossorigin>
+    <link href="https://cdn.jsdelivr.net/gh/HirokoIO/maplemonoFont/MapleMonoNF-Bold.woff2" rel="prefetch" as="font" type="font/woff2" crossorigin>
     
     <!-- Schema.org Structured Data (JSON-LD) -->
     <script type="application/ld+json">

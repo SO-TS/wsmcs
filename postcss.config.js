@@ -9,6 +9,13 @@ export default {
     // Tailwind CSS plugin for PostCSS
     tailwindcss: {},
     // Autoprefixer plugin to add vendor prefixes to CSS rules
-    autoprefixer: {},
+    autoprefixer: {
+      overrideBrowserslist: [
+        '> 0.5%',
+        'last 2 versions',
+        'Firefox ESR',
+        'not dead'
+      ]
+    },
   },
 }

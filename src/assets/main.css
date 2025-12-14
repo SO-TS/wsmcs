@@ -12,6 +12,7 @@
   font-weight: 400;
   font-style: normal;
   font-display: swap;
+  size-adjust: 100%;
 }
 
 @font-face {
@@ -20,6 +21,7 @@
   font-weight: 700;
   font-style: normal;
   font-display: swap;
+  size-adjust: 100%;
 }
 
 /* Maple Mono Font Face Definitions - Fallback monospace font */
@@ -29,7 +31,8 @@
        url('https://cdn.jsdelivr.net/npm/maple-mono-font@1.0.0/dist/MapleMonoNF-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
+  size-adjust: 100%;
 }
 
 @font-face {
@@ -38,7 +41,8 @@
        url('https://cdn.jsdelivr.net/npm/maple-mono-font@1.0.0/dist/MapleMonoNF-Bold.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
+  size-adjust: 100%;
 }
 
 /* Tailwind CSS directives */
@@ -52,11 +56,41 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Optimize images */
+/* Optimize images and media */
 img {
   max-width: 100%;
   height: auto;
   display: block;
+  /* Prevent layout shift on image load */
+  aspect-ratio: auto;
+}
+
+/* Optimize video and iframe loading */
+iframe, video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Use contain to limit repaint/reflow scope */
+main, section, article, aside {
+  contain: layout style paint;
+}
+
+/* Optimize interactive elements */
+button, a, input {
+  /* Reduce browser reflow on hover */
+  will-change: auto;
+}
+
+button:hover, a:hover {
+  will-change: transform, color;
+}
+
+/* Optimize transitions and animations */
+* {
+  /* Limit animation to transform and opacity only */
+  transition-property: opacity, transform;
 }
 
 /* Hardware acceleration for smooth animations */

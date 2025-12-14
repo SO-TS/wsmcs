@@ -73,8 +73,19 @@ watch(theme, (newTheme) => {
   const htmlEl = document.documentElement;
   if (newTheme === 'dark') {
     htmlEl.classList.add('dark');
+    // Persist theme preference asynchronously
+    requestIdleCallback?.(() => {
+      localStorage.setItem('theme', 'dark');
+    }, { timeout: 2000 }) || setTimeout(() => {
+      localStorage.setItem('theme', 'dark');
+    }, 0);
   } else {
     htmlEl.classList.remove('dark');
+    requestIdleCallback?.(() => {
+      localStorage.setItem('theme', 'light');
+    }, { timeout: 2000 }) || setTimeout(() => {
+      localStorage.setItem('theme', 'light');
+    }, 0);
   }
 }, { immediate: true });
 
@@ -96,7 +107,7 @@ onMounted(() => {
     } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
       theme.value = 'dark';
     }
-  }) || (() => {
+  }, { timeout: 3000 }) || (() => {
     // Fallback for browsers without requestIdleCallback
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {

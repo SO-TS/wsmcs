@@ -8,10 +8,25 @@
 export default {
   // Configure files to scan for Tailwind classes to generate CSS
   content: [
-    "./index.html", // Main HTML file
-    "./src/**/*.{vue,js,ts,jsx,tsx}", // All Vue components, JS, TS, JSX, TSX files in src
+    "./index.html",
+    "./src/**/*.{vue,js,ts,jsx,tsx}",
   ],
-  // Performance optimization: use purge for unused styles
+  // Performance optimization: disable unused utilities
+  corePlugins: {
+    // Disable rarely used utilities to reduce CSS size
+    backgroundImage: false,
+    backgroundPosition: false,
+    backgroundRepeat: false,
+    backgroundSize: false,
+    divideColor: false,
+    divideStyle: false,
+    divideWidth: false,
+    fontVariantNumeric: false,
+    textDecorationColor: false,
+    textDecorationStyle: false,
+    textDecorationThickness: false,
+    textUnderlineOffset: false,
+  },
   safelist: [
     // Add any dynamic classes that Tailwind might miss
   ],

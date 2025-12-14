@@ -2,6 +2,7 @@
 /**
  * @file PageHeader.vue
  * @description Global header that shrinks to a minimal mode on scroll.
+ * Optimized with throttled scroll handling for better performance
  */
 
 import { ref, onMounted, onUnmounted } from 'vue';
@@ -11,14 +12,25 @@ import logoUrl from '@/assets/wsmcs-logo.png'
 const { t } = useI18n();
 
 const isShrunk = ref(false);
-const scrollThreshold = 70; // The point at which the header shrinks
+const scrollThreshold = 70;
+let ticking = false;
+let lastScrollY = 0;
 
+// Throttled scroll handler for better performance
 function handleScroll() {
-  const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-  isShrunk.value = currentScrollPosition > scrollThreshold;
+  lastScrollY = window.pageYOffset || document.documentElement.scrollTop;
+  
+  if (!ticking) {
+    requestAnimationFrame(() => {
+      isShrunk.value = lastScrollY > scrollThreshold;
+      ticking = false;
+    });
+    ticking = true;
+  }
 }
 
 onMounted(() => {
+  // Use passive listener for better scroll performance
   window.addEventListener('scroll', handleScroll, { passive: true });
 });
 

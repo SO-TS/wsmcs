@@ -8,6 +8,17 @@ import vScrollFade from './directives/v-scroll-fade'
 
 const app = createApp(App)
 app.use(i18n)
+
+// Register directives
 app.directive('edge-glow', vEdgeGlow)
 app.directive('scroll-fade', vScrollFade)
+
+// Optimize app config for production
+if (process.env.NODE_ENV === 'production') {
+  app.config.productionTip = false
+  app.config.devtools = false
+  // Disable performance measurements in production
+  app.config.performance = false
+}
+
 app.mount('#app')
