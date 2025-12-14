@@ -6,6 +6,7 @@
 
 import { useI18n } from 'vue-i18n';
 import { IMAGES } from '../config/images';
+import ProgressiveImage from './ProgressiveImage.vue';
 
 const { t } = useI18n();
 
@@ -30,9 +31,21 @@ const heroBackgroundStyle = {
 
 <template>
   <!-- Hero Section container -->
-  <section class="min-h-screen bg-cover bg-top flex items-center text-white relative -mt-[70px] pt-[70px]" :style="heroBackgroundStyle">
+  <section class="min-h-screen flex items-center text-white relative -mt-[70px] pt-[70px] overflow-hidden">
+    <!-- Progressive background image -->
+    <ProgressiveImage
+      :src="IMAGES.heroBg"
+      :thumbnail="IMAGES.heroBgThumbnail"
+      alt="英雄背景"
+      loading="eager"
+      class="hero-bg-image"
+    />
+    
+    <!-- Dark overlay for text readability -->
+    <div class="absolute inset-0 bg-gradient-to-r from-black/60 to-black/40 z-10"></div>
+    
     <!-- Main content wrapper -->
-    <div class="max-w-7xl mx-auto px-6 w-full flex justify-start items-center">
+    <div class="max-w-7xl mx-auto px-6 w-full flex justify-start items-center relative z-20">
       <!-- Content block (text + buttons) -->
       <div class="max-w-xl fade-in-up">
         <!-- Hero Title -->
@@ -50,6 +63,26 @@ const heroBackgroundStyle = {
 </template>
 
 <style scoped>
+.hero-bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* Ensure the container for ProgressiveImage has proper dimensions */
+:deep(.image-container) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
 .hero-btn-primary {
   padding: 10px 24px; /* px-6 py-2.5 */
   border-radius: 6px; /* rounded-md */
