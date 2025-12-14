@@ -52,34 +52,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* HTML optimizations for Core Web Vitals */
-html {
-  scroll-behavior: smooth;
-}
-
 /* Optimize images */
 img {
   max-width: 100%;
   height: auto;
   display: block;
-}
-
-/* Image container optimization for progressive loading */
-.image-container {
-  overflow: hidden;
-  position: relative;
-}
-
-/* Prevent layout shift (CLS optimization) */
-.image-container::before {
-  content: '';
-  display: block;
-  padding-bottom: 100%; /* Maintain aspect ratio */
-}
-
-/* Reduce CLS by using contain property */
-main, section, article, .container {
-  contain: layout style paint;
 }
 
 /* Hardware acceleration for smooth animations */
