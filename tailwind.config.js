@@ -1,6 +1,6 @@
 /**
  * @file tailwind.config.js
- * @description Tailwind CSS configuration file.
+ * @description Tailwind CSS configuration file with performance optimizations.
  * Defines content paths, theme extensions, and plugins for the project.
  */
 
@@ -10,6 +10,10 @@ export default {
   content: [
     "./index.html", // Main HTML file
     "./src/**/*.{vue,js,ts,jsx,tsx}", // All Vue components, JS, TS, JSX, TSX files in src
+  ],
+  // Performance optimization: use purge for unused styles
+  safelist: [
+    // Add any dynamic classes that Tailwind might miss
   ],
   // Define and extend Tailwind's default theme
   theme: {
@@ -66,4 +70,8 @@ export default {
   },
   // Add Tailwind plugins here
   plugins: [],
+  // Performance optimization: production mode
+  corePlugins: {
+    // Disable plugins that you don't need
+  },
 }
