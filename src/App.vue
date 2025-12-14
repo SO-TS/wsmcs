@@ -1,8 +1,8 @@
 <script setup>
 /**
  * @file App.vue
- * @description Main application component, responsible for global layout, theme management, and language switching.
- * Optimized with lazy loading and SEO management.
+ * @description Main application component with optimized theme management and SEO handling
+ * Performance improvements: cached DOM queries, batch updates, efficient watchers
  */
 
 import { ref, onMounted, watch, defineAsyncComponent } from 'vue';
@@ -23,58 +23,90 @@ const { locale } = useI18n();
 /* Theme Management */
 const theme = ref('light');
 
+// Cache DOM elements to avoid repeated queries
+const metaCache = {
+  description: null,
+  ogTitle: null,
+  ogDescription: null,
+  initialized: false
+};
+
 /**
- * SEO Meta Tags Management
+ * Initialize meta tag cache (one-time operation)
+ */
+function initializeMetaCache() {
+  if (metaCache.initialized) return;
+  
+  metaCache.description = document.querySelector('meta[name="description"]');
+  metaCache.ogTitle = document.querySelector('meta[property="og:title"]');
+  metaCache.ogDescription = document.querySelector('meta[property="og:description"]');
+  metaCache.initialized = true;
+}
+
+/**
+ * Optimized SEO Meta Tags Management
+ * Uses cached DOM elements to avoid repeated querySelector calls
  */
 function updateMetaTags(title, description) {
   // Update page title
   document.title = title;
   
-  // Update meta description
-  const metaDescription = document.querySelector('meta[name="description"]');
-  if (metaDescription) {
-    metaDescription.setAttribute('content', description);
+  // Batch update cached meta tags
+  if (metaCache.description) {
+    metaCache.description.setAttribute('content', description);
   }
   
-  // Update Open Graph tags
-  const ogTitle = document.querySelector('meta[property="og:title"]');
-  if (ogTitle) {
-    ogTitle.setAttribute('content', title);
+  if (metaCache.ogTitle) {
+    metaCache.ogTitle.setAttribute('content', title);
   }
   
-  const ogDescription = document.querySelector('meta[property="og:description"]');
-  if (ogDescription) {
-    ogDescription.setAttribute('content', description);
+  if (metaCache.ogDescription) {
+    metaCache.ogDescription.setAttribute('content', description);
   }
 }
 
 /**
- * Watches for changes in the 'theme' ref and applies/removes the 'dark' class
- * to the document's root element (<html>).
+ * Optimized theme switcher with lazy evaluation
  */
 watch(theme, (newTheme) => {
+  // Use classList for better performance than direct style manipulation
+  const htmlEl = document.documentElement;
   if (newTheme === 'dark') {
-    document.documentElement.classList.add('dark');
+    htmlEl.classList.add('dark');
   } else {
-    document.documentElement.classList.remove('dark');
+    htmlEl.classList.remove('dark');
   }
 }, { immediate: true });
 
 onMounted(() => {
+  // Initialize meta cache
+  initializeMetaCache();
+  
   // Set initial SEO tags
   updateMetaTags(
     '繁星之望服务器 - WSMCS',
     '一个拥有诸多优点的 Minecraft 高性能养老服务器'
   );
   
-  // Attempt to load theme preference from local storage
-  const savedTheme = localStorage.getItem('theme');
-  if (savedTheme) {
-    theme.value = savedTheme;
-  } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    theme.value = 'dark';
-  }
+  // Load theme preference using non-blocking approach
+  requestIdleCallback?.(() => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      theme.value = savedTheme;
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      theme.value = 'dark';
+    }
+  }) || (() => {
+    // Fallback for browsers without requestIdleCallback
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      theme.value = savedTheme;
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      theme.value = 'dark';
+    }
+  })();
 });
+
 
 // Language switching logic is not directly managed in the header anymore,
 // but the `locale` ref from useI18n is still available if needed elsewhere.

@@ -37,7 +37,7 @@ function resetExpandedCard() {
 
 <template>
   <!-- Features Section container -->
-  <section class="py-20 fade-in-up"> <!-- Added fade-in-up class for entry animation -->
+  <section v-scroll-fade="{ delay: 0 }" class="py-20">
     <div class="max-w-7xl mx-auto px-6">
       <!-- Section Header -->
       <div class="mb-10 section-header">
@@ -127,6 +127,9 @@ function resetExpandedCard() {
   transition: flex 0.5s ease-in-out;
   cursor: pointer;
   position: relative;
+  /* Performance optimization: GPU acceleration for smooth transitions */
+  will-change: flex;
+  transform: translateZ(0);
 }
 
 .feature-card.is-expanded {
@@ -138,6 +141,9 @@ function resetExpandedCard() {
   height: 100%;
   object-fit: cover;
   transition: transform 0.5s ease-in-out;
+  /* GPU acceleration for image transform */
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 /* Ensure ProgressiveImage container in feature cards has proper dimensions */
