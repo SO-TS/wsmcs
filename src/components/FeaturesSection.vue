@@ -8,6 +8,7 @@
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { IMAGES } from '../config/images';
+import ProgressiveImage from './ProgressiveImage.vue';
 
 const { t } = useI18n();
 
@@ -52,7 +53,13 @@ function resetExpandedCard() {
           :class="{ 'is-expanded': expandedCardIndex === 0 }"
           @mouseenter="expandCard(0)"
         >
-          <img :src="IMAGES.featureSurvival" :alt="t('features.survival_title')" class="feature-card-image">
+          <ProgressiveImage
+            :src="IMAGES.featureSurvival"
+            :thumbnail="IMAGES.featureSurvivalThumbnail"
+            :alt="t('features.survival_title')"
+            loading="lazy"
+            class="feature-card-image"
+          ></ProgressiveImage>
           <div class="feature-overlay absolute bottom-0 left-0 w-full p-8 text-white">
             <h3 class="feature-title text-3xl font-bold">{{ t('features.survival_title') }}</h3>
             <p class="feature-description text-sm opacity-80 leading-relaxed">{{ t('features.survival_desc') }}</p>
@@ -64,7 +71,13 @@ function resetExpandedCard() {
           :class="{ 'is-expanded': expandedCardIndex === 1 }"
           @mouseenter="expandCard(1)"
         >
-          <img :src="IMAGES.featureSkyblock" :alt="t('features.skyblock_title')" class="feature-card-image">
+          <ProgressiveImage
+            :src="IMAGES.featureSkyblock"
+            :thumbnail="IMAGES.featureSkyblockThumbnail"
+            :alt="t('features.skyblock_title')"
+            loading="lazy"
+            class="feature-card-image"
+          ></ProgressiveImage>
           <div class="feature-overlay absolute bottom-0 left-0 w-full p-8 text-white">
             <h3 class="feature-title text-3xl font-bold">{{ t('features.skyblock_title') }}</h3>
             <p class="feature-description text-sm opacity-80 leading-relaxed">{{ t('features.skyblock_desc') }}</p>
@@ -76,7 +89,13 @@ function resetExpandedCard() {
           :class="{ 'is-expanded': expandedCardIndex === 2 }"
           @mouseenter="expandCard(2)"
         >
-          <img :src="IMAGES.featureBedwars" :alt="t('features.bedwars_title')" class="feature-card-image">
+          <ProgressiveImage
+            :src="IMAGES.featureBedwars"
+            :thumbnail="IMAGES.featureBedwarsThumbnail"
+            :alt="t('features.bedwars_title')"
+            loading="lazy"
+            class="feature-card-image"
+          ></ProgressiveImage>
           <div class="feature-overlay absolute bottom-0 left-0 w-full p-8 text-white">
             <h3 class="feature-title text-3xl font-bold">{{ t('features.bedwars_title') }}</h3>
             <p class="feature-description text-sm opacity-80 leading-relaxed">{{ t('features.bedwars_desc') }}</p>
@@ -119,6 +138,13 @@ function resetExpandedCard() {
   height: 100%;
   object-fit: cover;
   transition: transform 0.5s ease-in-out;
+}
+
+/* Ensure ProgressiveImage container in feature cards has proper dimensions */
+:deep(.image-container) {
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
 
 .feature-card.is-expanded .feature-card-image {
