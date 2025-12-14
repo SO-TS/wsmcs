@@ -2,18 +2,21 @@
 /**
  * @file App.vue
  * @description Main application component, responsible for global layout, theme management, and language switching.
+ * Optimized with lazy loading for better performance.
  */
 
-import { ref, onMounted, watch } from 'vue'; // Re-added ref, onMounted, watch
+import { ref, onMounted, watch, defineAsyncComponent } from 'vue'; // Added defineAsyncComponent
 import { useI18n } from 'vue-i18n';
 
-// Component Imports
+// Component Imports - PageHeader and HeroSection loaded immediately for better UX
 import PageHeader from './components/PageHeader.vue';
 import HeroSection from './components/HeroSection.vue';
-import FeaturesSection from './components/FeaturesSection.vue';
-import TeamSection from './components/TeamSection.vue';
-import CTASection from './components/CTASection.vue';
-import PageFooter from './components/PageFooter.vue';
+
+// Lazy load non-critical components
+const FeaturesSection = defineAsyncComponent(() => import('./components/FeaturesSection.vue'));
+const TeamSection = defineAsyncComponent(() => import('./components/TeamSection.vue'));
+const CTASection = defineAsyncComponent(() => import('./components/CTASection.vue'));
+const PageFooter = defineAsyncComponent(() => import('./components/PageFooter.vue'));
 
 const { locale } = useI18n();
 
