@@ -15,6 +15,53 @@ export default {
   theme: {
     extend: {
       // Customizations or additions to Tailwind's default theme go here
+      fontFamily: {
+        // Primary font family - MiSans with Maple Mono fallback
+        sans: [
+          '"MiSans"',
+          '"Maple Mono NF"',
+          '"Maple Mono"',
+          'ui-sans-serif',
+          'system-ui',
+          '-apple-system',
+          'BlinkMacSystemFont',
+          '"Segoe UI"',
+          'Roboto',
+          '"Helvetica Neue"',
+          'Arial',
+          'sans-serif',
+          '"Apple Color Emoji"',
+          '"Segoe UI Emoji"',
+          '"Segoe UI Symbol"',
+          '"Noto Color Emoji"'
+        ],
+        // Monospace font - Maple Mono with MiSans fallback
+        mono: [
+          '"Maple Mono NF"',
+          '"Maple Mono"',
+          '"MiSans"',
+          'ui-monospace',
+          'SFMono-Regular',
+          '"SF Mono"',
+          'Menlo',
+          'Consolas',
+          '"Liberation Mono"',
+          'Courier',
+          'monospace'
+        ],
+      },
+      // Configure font weights - support bold (700)
+      fontWeight: {
+        thin: '100',
+        extralight: '200',
+        light: '300',
+        normal: '400',
+        medium: '500',
+        semibold: '600',
+        bold: '700', // Use bold weight
+        extrabold: '800',
+        black: '900',
+      },
     },
   },
   // Add Tailwind plugins here
