@@ -4,33 +4,75 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="icon" href="/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="description" content="繁星之望服务器 - 一个拥有诸多优点的 Minecraft 高性能养老服务器">
-    <!-- Performance Optimization Meta Tags -->
+    
+    <!-- Core Web Vitals Optimization Meta Tags -->
     <meta name="theme-color" content="#2563eb">
+    <meta name="color-scheme" content="light dark">
     <link rel="apple-touch-icon" href="/favicon.ico">
     <meta name="format-detection" content="telephone=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    
     <!-- DNS Prefetch for external resources -->
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="https://q1.qlogo.cn">
-    <!-- Preconnect for better performance -->
+    
+    <!-- Preconnect for critical resources -->
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link rel="preconnect" href="https://q1.qlogo.cn" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     
     <title>繁星之望服务器 - WSMCS</title>
-    <!-- MiSans Font - Primary font, Chinese optimized sans-serif -->
+    
+    <!-- Font Loading Strategy - font-display: swap for better LCP -->
     <link href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/MiSans-Regular.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
     <link href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/MiSans-Bold.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
-    <!-- Maple Mono Font Fallback - Using multiple CDN sources for optimal performance -->
-    <!-- Chinese mainland optimized CDN (HirokoIO) - Regular and Bold weights -->
     <link href="https://cdn.jsdelivr.net/gh/HirokoIO/maplemonoFont/MapleMonoNF-Regular.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
     <link href="https://cdn.jsdelivr.net/gh/HirokoIO/maplemonoFont/MapleMonoNF-Bold.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
+    
     <!-- Fallback for international users -->
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Prefetch critical images for LCP optimization -->
+    <link rel="prefetch" href="/images/hero-bg-thumb.png" as="image" imagesrcset="/images/hero-bg-thumb.png" imagesizes="100vw">
+    <link rel="prefetch" href="/images/hero-bg.png" as="image" imagesrcset="/images/hero-bg.png" imagesizes="100vw">
   </head>
   <body class="antialiased">
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
+    
+    <!-- Performance monitoring (optional) -->
+    <script>
+      // Measure Web Vitals
+      if ('PerformanceObserver' in window) {
+        // Measure LCP
+        try {
+          const lcpObserver = new PerformanceObserver((list) => {
+            const entries = list.getEntries()
+            const lastEntry = entries[entries.length - 1]
+            if (lastEntry) {
+              console.log('LCP:', lastEntry.renderTime || lastEntry.loadTime)
+            }
+          })
+          lcpObserver.observe({ type: 'largest-contentful-paint', buffered: true })
+        } catch (e) {}
+        
+        // Measure CLS
+        try {
+          const clsObserver = new PerformanceObserver((list) => {
+            let cls = 0
+            for (const entry of list.getEntries()) {
+              if (!entry.hadRecentInput) {
+                cls += entry.value
+              }
+            }
+            console.log('CLS:', cls)
+          })
+          clsObserver.observe({ type: 'layout-shift', buffered: true })
+        } catch (e) {}
+      }
+    </script>
   </body>
 </html>
