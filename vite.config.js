@@ -56,8 +56,14 @@ export default defineConfig({
         drop_console: true,
         drop_debugger: true,
         pure_funcs: ['console.log', 'console.info', 'console.debug'],
+        passes: 3,
+        inline: 3,
+        reduce_vars: true,
+        reduce_funcs: true,
       },
-      mangle: true,
+      mangle: {
+        safari10: false,
+      },
       format: {
         comments: false,
       },
@@ -73,35 +79,38 @@ export default defineConfig({
             if (id.includes('vue-toastification')) {
               return 'vue-toast'
             }
+            if (id.includes('tailwindcss')) {
+              return 'vendor'
+            }
             return 'vendor'
           }
         },
         // Optimize chunk names for better caching
-        chunkFileNames: 'js/[name].[hash:8].js',
-        entryFileNames: 'js/[name].[hash:8].js',
+        chunkFileNames: 'assets/[name].[hash:8].js',
+        entryFileNames: 'assets/[name].[hash:8].js',
         assetFileNames: (assetInfo) => {
           const info = assetInfo.name.split('.')
           const ext = info[info.length - 1]
-          if (/png|jpe?g|gif|svg/.test(ext)) {
-            return 'images/[name].[hash:8][extname]'
+          if (/png|jpe?g|gif|svg|webp|avif/.test(ext)) {
+            return 'assets/[name].[hash:8][extname]'
           } else if (/woff|woff2|ttf|otf|eot/.test(ext)) {
-            return 'fonts/[name].[hash:8][extname]'
+            return 'assets/[name].[hash:8][extname]'
           } else if (ext === 'css') {
-            return 'css/[name].[hash:8][extname]'
+            return 'assets/[name].[hash:8][extname]'
           }
-          return '[name].[hash:8][extname]'
+          return 'assets/[name].[hash:8][extname]'
         },
+        generatedCode: {
+          preset: 'es2015',
+          arrowFunctions: true,
+        }
       },
     },
-    // Report compressed size
+    // Performance optimizations
     reportCompressedSize: false,
-    // Target modern browsers for smaller output
     target: ['es2020'],
-    // CSS code split
     cssCodeSplit: true,
-    // Disable source maps in production for smaller bundle size
     sourcemap: false,
-    // Increase chunk size warning threshold
     chunkSizeWarningLimit: 500,
   },
 })

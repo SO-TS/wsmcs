@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onBeforeUnmount } from 'vue'
 
 const props = defineProps({
   src: String,
@@ -17,6 +17,7 @@ const props = defineProps({
 const emit = defineEmits(['load', 'error'])
 
 const isLoaded = ref(false)
+let imageController = null
 
 const handleLoad = () => {
   isLoaded.value = true
@@ -26,11 +27,18 @@ const handleLoad = () => {
 const handleError = () => {
   emit('error')
 }
+
+// Cleanup on unmount
+onBeforeUnmount(() => {
+  if (imageController) {
+    imageController.abort()
+  }
+})
 </script>
 
 <template>
   <div class="image-container">
-    <!-- Low-quality thumbnail - shown first -->
+    <!-- Low-quality thumbnail - shown first for LCP optimization -->
     <img
       v-if="thumbnail"
       :src="thumbnail"
@@ -38,14 +46,17 @@ const handleError = () => {
       class="image-thumbnail"
       :class="{ hidden: isLoaded }"
       aria-hidden="true"
+      loading="lazy"
+      decoding="async"
     />
-    <!-- High-quality image - loaded progressively -->
+    <!-- High-quality image - loaded progressively with optimization -->
     <img
       :src="src"
       :alt="alt"
       class="image-main"
       :loading="loading"
       decoding="async"
+      importance="high"
       @load="handleLoad"
       @error="handleError"
     />
