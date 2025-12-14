@@ -1,0 +1,21 @@
+# Allow all bots to crawl the site
+User-agent: *
+Allow: /
+
+# Specific rules for Google
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Specific rules for Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Disallow paths
+Disallow: /*.json$
+Disallow: /admin/
+Disallow: /private/
+
+# Sitemap location
+Sitemap: https://wsmcs.com/sitemap.xml

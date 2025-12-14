@@ -2,10 +2,10 @@
 /**
  * @file App.vue
  * @description Main application component, responsible for global layout, theme management, and language switching.
- * Optimized with lazy loading for better performance.
+ * Optimized with lazy loading and SEO management.
  */
 
-import { ref, onMounted, watch, defineAsyncComponent } from 'vue'; // Added defineAsyncComponent
+import { ref, onMounted, watch, defineAsyncComponent } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 // Component Imports - PageHeader and HeroSection loaded immediately for better UX
@@ -21,12 +21,36 @@ const PageFooter = defineAsyncComponent(() => import('./components/PageFooter.vu
 const { locale } = useI18n();
 
 /* Theme Management */
-const theme = ref('light'); // Reactive state for the current theme ('light' or 'dark')
+const theme = ref('light');
+
+/**
+ * SEO Meta Tags Management
+ */
+function updateMetaTags(title, description) {
+  // Update page title
+  document.title = title;
+  
+  // Update meta description
+  const metaDescription = document.querySelector('meta[name="description"]');
+  if (metaDescription) {
+    metaDescription.setAttribute('content', description);
+  }
+  
+  // Update Open Graph tags
+  const ogTitle = document.querySelector('meta[property="og:title"]');
+  if (ogTitle) {
+    ogTitle.setAttribute('content', title);
+  }
+  
+  const ogDescription = document.querySelector('meta[property="og:description"]');
+  if (ogDescription) {
+    ogDescription.setAttribute('content', description);
+  }
+}
 
 /**
  * Watches for changes in the 'theme' ref and applies/removes the 'dark' class
  * to the document's root element (<html>).
- * Runs immediately on component setup to apply the initial theme.
  */
 watch(theme, (newTheme) => {
   if (newTheme === 'dark') {
@@ -37,12 +61,17 @@ watch(theme, (newTheme) => {
 }, { immediate: true });
 
 onMounted(() => {
+  // Set initial SEO tags
+  updateMetaTags(
+    '繁星之望服务器 - WSMCS',
+    '一个拥有诸多优点的 Minecraft 高性能养老服务器'
+  );
+  
   // Attempt to load theme preference from local storage
   const savedTheme = localStorage.getItem('theme');
   if (savedTheme) {
     theme.value = savedTheme;
   } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    // If no saved theme, detect user's system preference
     theme.value = 'dark';
   }
 });
