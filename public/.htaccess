@@ -1,0 +1,61 @@
+# Enable gzip compression
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+</IfModule>
+
+# Browser caching
+<IfModule mod_expires.c>
+  ExpiresActive On
+  
+  # 图片缓存 14 天 (1209600 秒)
+  ExpiresByType image/png "access plus 14 days"
+  ExpiresByType image/jpeg "access plus 14 days"
+  ExpiresByType image/gif "access plus 14 days"
+  ExpiresByType image/svg+xml "access plus 14 days"
+  ExpiresByType image/webp "access plus 14 days"
+  ExpiresByType image/avif "access plus 14 days"
+  
+  # 字体缓存 30 天
+  ExpiresByType font/woff "access plus 30 days"
+  ExpiresByType font/woff2 "access plus 30 days"
+  ExpiresByType font/ttf "access plus 30 days"
+  ExpiresByType font/otf "access plus 30 days"
+  ExpiresByType application/font-sfnt "access plus 30 days"
+  
+  # CSS 和 JS（带 hash）缓存 1 年
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  
+  # HTML 缓存 1 小时
+  ExpiresByType text/html "access plus 1 hour"
+  
+  # 默认缓存
+  ExpiresDefault "access plus 1 month"
+</IfModule>
+
+# HTTP headers for caching
+<FilesMatch "\.(png|jpg|jpeg|gif|svg|webp|avif)$">
+  Header set Cache-Control "public, max-age=1209600, immutable"
+</FilesMatch>
+
+<FilesMatch "\.(woff|woff2|ttf|otf|eot)$">
+  Header set Cache-Control "public, max-age=2592000, immutable"
+</FilesMatch>
+
+<FilesMatch "\.(?:js|css)$">
+  Header set Cache-Control "public, max-age=31536000, immutable"
+</FilesMatch>
+
+<FilesMatch "\.html$">
+  Header set Cache-Control "public, max-age=3600, must-revalidate"
+</FilesMatch>
+
+# Rewrite index.html for SPA
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>

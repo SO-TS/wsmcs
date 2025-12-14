@@ -3,11 +3,42 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
 
+// 自定义缓存策略插件
+function cacheHeaderPlugin() {
+  return {
+    name: 'cache-headers',
+    configResolved(config) {
+      this.config = config
+    },
+    apply: 'serve',
+    middleware: (req, res, next) => {
+      // 图片缓存 14 天 (1209600 秒)
+      if (/\.(png|jpg|jpeg|gif|svg|webp|avif)$/i.test(req.url)) {
+        res.setHeader('Cache-Control', 'public, max-age=1209600, immutable')
+      }
+      // 字体缓存 30 天
+      else if (/\.(woff|woff2|ttf|otf|eot)$/i.test(req.url)) {
+        res.setHeader('Cache-Control', 'public, max-age=2592000, immutable')
+      }
+      // CSS 和 JS（带 hash）缓存 1 年
+      else if (/\.(js|css)$/.test(req.url) && req.url.includes('[hash')) {
+        res.setHeader('Cache-Control', 'public, max-age=31536000, immutable')
+      }
+      // HTML 缓存 1 小时
+      else if (/\.html$/i.test(req.url)) {
+        res.setHeader('Cache-Control', 'public, max-age=3600, must-revalidate')
+      }
+      next()
+    }
+  }
+}
+
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
     vueDevTools(),
+    cacheHeaderPlugin(),
   ],
   resolve: {
     alias: {
