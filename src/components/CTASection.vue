@@ -81,7 +81,7 @@ function fallbackCopyToClipboard(text) {
 
 <template>
   <!-- CTA Section container -->
-  <section id="cta-section" class="bg-cover bg-center text-center text-white py-16" :style="ctaBackgroundStyle">
+  <section id="cta-section" v-scroll-fade="{ delay: 0 }" class="bg-cover bg-center text-center text-white py-16" :style="ctaBackgroundStyle">
     <div class="max-w-7xl mx-auto px-6">
       <!-- CTA Title -->
       <h2 class="text-4xl font-bold mb-3.5">{{ t('cta.title') }}</h2>

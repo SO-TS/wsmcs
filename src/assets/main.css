@@ -67,6 +67,12 @@ img {
   perspective: 1000px;
 }
 
+/* Performance optimization for scroll fade animations */
+[data-v-scroll-fade] {
+  will-change: opacity;
+  transform: translateZ(0);
+}
+
 /*
  * Global CSS Custom Properties (Variables)
  * These variables define colors and other stylistic values that can be
