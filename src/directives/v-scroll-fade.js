@@ -19,6 +19,12 @@ function getSharedObserver() {
             el.style.opacity = el._originalOpacity || '1';
             el._scrollAnimated = true;
             
+            // Remove transition after animation completes to avoid interfering with other interactions
+            setTimeout(() => {
+              el.style.transition = '';
+              el.style.transitionDelay = '';
+            }, 600); // Match the CSS transition duration (0.6s)
+            
             // Unobserve after animation starts
             sharedObserver.unobserve(el);
           });

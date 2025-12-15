@@ -12,7 +12,7 @@ const { t } = useI18n();
 
 <template>
   <!-- Team Section container -->
-  <section class="py-20 fade-in-up"> <!-- Added fade-in-up class for entry animation -->
+  <section class="py-20 fade-in-up">
     <div class="max-w-7xl mx-auto px-6">
       <!-- Section Header -->
       <div class="mb-10 section-header">
@@ -42,9 +42,9 @@ const { t } = useI18n();
           <div v-scroll-fade="{ delay: 100 }" v-edge-glow class="team-card-glow relative overflow-hidden rounded-xl p-5 flex items-center v-edge-glow-container">
             <div class="w-16 h-16 rounded-full mr-4 flex-shrink-0 avatar-bg relative">
               <img :src="IMAGES.avatarTom" :alt="t('team.member_2_name')" class="w-full h-full object-cover rounded-full">
-              <div class="stacked-badges"> <!-- New container for stacked badges -->
+              <div class="stacked-badges">
                 <span class="badge-item text-xs px-1.5 py-0.5 rounded badge-owner text-white font-normal">{{ t('team.member_2_badge') }}</span>
-                <span class="badge-item text-xs px-1.5 py-0.5 rounded badge-supporter text-white font-normal">{{ t('team.member_2_supporter_badge') }}</span> <!-- New badge -->
+                <span class="badge-item text-xs px-1.5 py-0.5 rounded badge-supporter text-white font-normal">{{ t('team.member_2_supporter_badge') }}</span>
               </div>
             </div>
             <div class="flex-grow">
@@ -60,9 +60,9 @@ const { t } = useI18n();
           <div v-scroll-fade="{ delay: 200 }" v-edge-glow class="team-card-glow relative overflow-hidden rounded-xl p-5 flex items-center v-edge-glow-container">
             <div class="w-16 h-16 rounded-full mr-4 flex-shrink-0 avatar-bg relative">
               <img :src="IMAGES.avatarFrank" :alt="t('team.member_3_name')" class="w-full h-full object-cover rounded-full">
-              <div class="stacked-badges"> <!-- New container for stacked badges -->
+              <div class="stacked-badges">
                 <span class="badge-item text-xs px-1.5 py-0.5 rounded badge-owner text-white font-normal">{{ t('team.member_3_badge') }}</span>
-                <span class="badge-item text-xs px-1.5 py-0.5 rounded badge-supporter text-white font-normal">{{ t('team.member_3_supporter_badge') }}</span> <!-- New badge -->
+                <span class="badge-item text-xs px-1.5 py-0.5 rounded badge-supporter text-white font-normal">{{ t('team.member_3_supporter_badge') }}</span>
               </div>
             </div>
             <div class="flex-grow">
@@ -144,6 +144,8 @@ const { t } = useI18n();
   z-index: 1; /* Ensures the card content is above the pseudo-element glow */
   background-color: var(--card-bg-color); /* Theme-aware background color */
   color: var(--text-main); /* Theme-aware default text color */
+  transition: box-shadow 0.2s ease-in-out;
+  will-change: box-shadow;
 }
 
 /* Styles for team card link wrapper */
@@ -151,7 +153,7 @@ const { t } = useI18n();
   display: block;
   text-decoration: none;
   color: inherit;
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out;
   /* Performance optimization: GPU acceleration */
   will-change: transform;
   transform: translateZ(0);
@@ -165,12 +167,10 @@ const { t } = useI18n();
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
-/* Performance optimization for team card glow container */
-.team-card-glow {
-  will-change: box-shadow;
-  transition-property: box-shadow;
-  transition-duration: 0.2s;
-  transition-timing-function: ease-in-out;
+/* Ensure card state is preserved after scroll animation */
+.team-card-link .team-card-glow {
+  background-color: var(--card-bg-color);
+  color: var(--text-main);
 }
 
 /* Theme-aware background for avatar placeholders */
