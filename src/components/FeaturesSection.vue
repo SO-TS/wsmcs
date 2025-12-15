@@ -44,7 +44,7 @@ function resetExpandedCard() {
         <h2 class="text-3xl font-bold mb-4">{{ t('features.title') }}</h2>
         <p class="text-base">{{ t('features.desc') }}</p>
       </div>
-      
+
       <!-- Features Accordion -->
       <div class="features-accordion flex h-[400px] gap-4" @mouseleave="resetExpandedCard">
         <!-- Feature Card 1: Survival -->
