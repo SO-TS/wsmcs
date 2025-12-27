@@ -2,43 +2,50 @@ import { getAssetFromKV, mapRequestToAsset } from '@cloudflare/kv-asset-handler'
 
 export default {
   async fetch(request, env, ctx) {
-    const ASSET_MANIFEST = await import('./manifest.json', {
-      assert: { type: 'json' }
-    }).then(m => m.default);
-
-    const customOptions = {
-      ASSET_MANIFEST: ASSET_MANIFEST,
-      cacheControl: {
-        // 缓存时间配置
-        browserTTL: 604800, // 7 days
-        edgeTTL: 86400,     // 1 day
-      },
-    };
-
     try {
-      // 尝试从 KV 获取资产
-      return await getAssetFromKV(
+      const page = await getAssetFromKV(
         {
           request,
           waitUntil: ctx.waitUntil.bind(ctx),
         },
-        customOptions
+        {
+          ASSET_NAMESPACE: env.ASSETS,
+          ASSET_MANIFEST: env.ASSET_MANIFEST,
+        }
       );
+
+      const response = new Response(page.body, page);
+
+      response.headers.set('X-Content-Type-Options', 'nosniff');
+      response.headers.set('X-Frame-Options', 'SAMEORIGIN');
+      response.headers.set('X-XSS-Protection', '1; mode=block');
+      response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
+      response.headers.set('Server', 'Cloudflare');
+
+      return response;
     } catch (e) {
       // 如果资产未找到，返回 index.html (用于 SPA 路由)
-      const options = {
-        ...customOptions,
-        mapRequestToAsset: req => new Request(`${new URL(req.url).origin}/index.html`, req),
-      };
-
       try {
-        return await getAssetFromKV(
+        const fallbackRequest = new Request(`${new URL(request.url).origin}/index.html`, request);
+        const page = await getAssetFromKV(
           {
-            request,
+            request: fallbackRequest,
             waitUntil: ctx.waitUntil.bind(ctx),
           },
-          options
+          {
+            ASSET_NAMESPACE: env.ASSETS,
+            ASSET_MANIFEST: env.ASSET_MANIFEST,
+          }
         );
+
+        const response = new Response(page.body, page);
+        response.headers.set('X-Content-Type-Options', 'nosniff');
+        response.headers.set('X-Frame-Options', 'SAMEORIGIN');
+        response.headers.set('X-XSS-Protection', '1; mode=block');
+        response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
+        response.headers.set('Server', 'Cloudflare');
+
+        return response;
       } catch (e) {
         return new Response('Not Found', { status: 404 });
       }
