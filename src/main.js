@@ -2,7 +2,7 @@ import './assets/main.css'
 
 import { createApp } from 'vue'
 import App from './App.vue'
-import i18n from './locales/i18n'
+import { router, i18n } from './router'
 import vEdgeGlow from './directives/v-edge-glow'
 import vScrollFade from './directives/v-scroll-fade'
 import AOS from 'aos'
@@ -10,6 +10,7 @@ import 'aos/dist/aos.css'
 
 const app = createApp(App)
 app.use(i18n)
+app.use(router)
 
 // Register directives
 app.directive('edge-glow', vEdgeGlow)
