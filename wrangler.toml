@@ -1,10 +1,12 @@
 name = "wsmcs"
 main = "workers-site/index.js"
+account_id = "d906205f76f930ec274dd4ae5537ecf0"  # Tom_chicken@qq.com's Account
 compatibility_date = "2025-01-01"
 
 # 定义环境
 [env.production]
 name = "wsmcs-prod"
+account_id = "d906205f76f930ec274dd4ae5537ecf0"  # Tom_chicken@qq.com's Account
 routes = [
   { pattern = "wsmcs.top", zone_name = "wsmcs.top" },
   { pattern = "*.wsmcs.top", zone_name = "wsmcs.top" }
@@ -13,6 +15,7 @@ vars = { ENVIRONMENT = "production" }
 
 [env.staging]
 name = "wsmcs-staging"
+account_id = "d906205f76f930ec274dd4ae5537ecf0"  # Tom_chicken@qq.com's Account
 routes = [
   { pattern = "staging.wsmcs.top", zone_name = "wsmcs.top" }
 ]
