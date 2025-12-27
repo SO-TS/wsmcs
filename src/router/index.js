@@ -3,6 +3,12 @@ import i18n from '../locales/i18n';
 
 // 动态导入页面组件
 const HomeView = () => import('../views/Home.vue'); // 主要内容现在在 Home.vue 中
+const NotFound = () => import('../views/error/NotFound.vue');
+const InternalServerError = () => import('../views/error/InternalServerError.vue');
+const ForbiddenError = () => import('../views/error/ForbiddenError.vue');
+const UnauthorizedError = () => import('../views/error/UnauthorizedError.vue');
+const BadGatewayError = () => import('../views/error/BadGatewayError.vue');
+const ServiceUnavailableError = () => import('../views/error/ServiceUnavailableError.vue');
 
 // 语言配置
 const supportedLocales = ['zh', 'en'];
@@ -66,11 +72,85 @@ const routes = [
     component: HomeView,
     meta: { locale: 'en' }
   },
+  // 错误页面路由 - 中文
+  {
+    path: '/zh/404',
+    name: 'NotFoundZh',
+    component: NotFound,
+    meta: { locale: 'zh' }
+  },
+  {
+    path: '/zh/500',
+    name: 'InternalServerErrorZh',
+    component: InternalServerError,
+    meta: { locale: 'zh' }
+  },
+  {
+    path: '/zh/403',
+    name: 'ForbiddenErrorZh',
+    component: ForbiddenError,
+    meta: { locale: 'zh' }
+  },
+  {
+    path: '/zh/401',
+    name: 'UnauthorizedErrorZh',
+    component: UnauthorizedError,
+    meta: { locale: 'zh' }
+  },
+  {
+    path: '/zh/502',
+    name: 'BadGatewayErrorZh',
+    component: BadGatewayError,
+    meta: { locale: 'zh' }
+  },
+  {
+    path: '/zh/503',
+    name: 'ServiceUnavailableErrorZh',
+    component: ServiceUnavailableError,
+    meta: { locale: 'zh' }
+  },
+  // 错误页面路由 - 英文
+  {
+    path: '/en/404',
+    name: 'NotFoundEn',
+    component: NotFound,
+    meta: { locale: 'en' }
+  },
+  {
+    path: '/en/500',
+    name: 'InternalServerErrorEn',
+    component: InternalServerError,
+    meta: { locale: 'en' }
+  },
+  {
+    path: '/en/403',
+    name: 'ForbiddenErrorEn',
+    component: ForbiddenError,
+    meta: { locale: 'en' }
+  },
+  {
+    path: '/en/401',
+    name: 'UnauthorizedErrorEn',
+    component: UnauthorizedError,
+    meta: { locale: 'en' }
+  },
+  {
+    path: '/en/502',
+    name: 'BadGatewayErrorEn',
+    component: BadGatewayError,
+    meta: { locale: 'en' }
+  },
+  {
+    path: '/en/503',
+    name: 'ServiceUnavailableErrorEn',
+    component: ServiceUnavailableError,
+    meta: { locale: 'en' }
+  },
   // 通配符路由 - 用于处理其他路径并尝试检测语言
   {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
-    component: HomeView,
+    component: NotFound,
     beforeEnter: (to, from, next) => {
       // 检测路径中的语言并设置
       setLocaleByPath(to.path);
