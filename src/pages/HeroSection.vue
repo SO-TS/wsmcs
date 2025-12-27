@@ -6,7 +6,7 @@
 
 import { useI18n } from 'vue-i18n';
 import { IMAGES } from '../config/images';
-import ProgressiveImage from './ProgressiveImage.vue';
+import ProgressiveImage from '@/components/common/ProgressiveImage.vue';
 
 const { t } = useI18n();
 

@@ -6,9 +6,9 @@
 
 import { useI18n } from 'vue-i18n';
 import logoUrl from '@/assets/wsmcs-logo.png'
-import IconBilibili from "@/components/icons/IconBilibili.vue";
-import IconYoutube from "@/components/icons/IconYoutube.vue";
-import IconKoolepa from "@/components/icons/IconKoolepa.vue";
+import IconBilibili from "@/components/common/IconBilibili.vue";
+import IconYoutube from "@/components/common/IconYoutube.vue";
+import IconKoolepa from "@/components/common/IconKoolepa.vue";
 
 const { t } = useI18n();
 </script>
