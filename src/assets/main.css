@@ -8,7 +8,7 @@
 /* MiSans Font Face Definitions - Primary font for Chinese users */
 @font-face {
   font-family: 'MiSans';
-  src: url('https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/MiSans-Regular.woff2') format('woff2');
+  src: url('https://jsd.cdn.zzko.cn/npm/misans@4.0.0/lib/MiSans-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -17,7 +17,7 @@
 
 @font-face {
   font-family: 'MiSans';
-  src: url('https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/MiSans-Bold.woff2') format('woff2');
+  src: url('https://jsd.cdn.zzko.cn/npm/misans@4.0.0/lib/MiSans-Bold.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -27,9 +27,8 @@
 /* Maple Mono Font Face Definitions - Fallback monospace font */
 @font-face {
   font-family: 'Maple Mono NF';
-  src: url('https://cdn.jsdelivr.net/gh/HirokoIO/maplemonoFont/MapleMonoNF-Regular.woff2') format('woff2'),
-       url('https://cdn.jsdelivr.net/npm/maple-mono-font@1.0.0/dist/MapleMonoNF-Regular.woff2') format('woff2');
-  font-weight: 400;
+    src: url('https://jsd.cdn.zzko.cn/gh/HirokoIO/maplemonoFont/MapleMonoNF-Regular.woff2') format('woff2'),
+      url('https://jsd.cdn.zzko.cn/npm/maple-mono-font@1.0.0/dist/MapleMonoNF-Regular.woff2') format('woff2');  font-weight: 400;
   font-style: normal;
   font-display: optional;
   size-adjust: 100%;
@@ -37,9 +36,8 @@
 
 @font-face {
   font-family: 'Maple Mono NF';
-  src: url('https://cdn.jsdelivr.net/gh/HirokoIO/maplemonoFont/MapleMonoNF-Bold.woff2') format('woff2'),
-       url('https://cdn.jsdelivr.net/npm/maple-mono-font@1.0.0/dist/MapleMonoNF-Bold.woff2') format('woff2');
-  font-weight: 700;
+    src: url('https://jsd.cdn.zzko.cn/gh/HirokoIO/maplemonoFont/MapleMonoNF-Bold.woff2') format('woff2'),
+      url('https://jsd.cdn.zzko.cn/npm/maple-mono-font@1.0.0/dist/MapleMonoNF-Bold.woff2') format('woff2');  font-weight: 700;
   font-style: normal;
   font-display: optional;
   size-adjust: 100%;
