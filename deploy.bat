@@ -32,6 +32,6 @@ if "!ENV!"=="production" (
 )
 
 echo ✅ 部署完成！
-echo 访问: https://wsmcs.cn
+echo 访问: https://wsmcs.top
 
 endlocal

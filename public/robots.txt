@@ -18,4 +18,4 @@ Disallow: /admin/
 Disallow: /private/
 
 # Sitemap location
-Sitemap: https://wsmcs.com/sitemap.xml
+Sitemap: https://wsmcs.top/sitemap.xml
