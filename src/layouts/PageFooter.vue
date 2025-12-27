@@ -9,6 +9,9 @@ import logoUrl from '@/assets/wsmcs-logo.png'
 import IconBilibili from "@/components/common/IconBilibili.vue";
 import IconYoutube from "@/components/common/IconYoutube.vue";
 import IconKoolepa from "@/components/common/IconKoolepa.vue";
+import IconCommunity from "@/components/common/IconCommunity.vue";
+import IconDocumentation from "@/components/common/IconDocumentation.vue";
+import IconSupport from "@/components/common/IconSupport.vue";
 
 const { t } = useI18n();
 </script>
@@ -67,6 +70,15 @@ const { t } = useI18n();
           <a href="YOUR_YOUTUBE_LINK" target="_blank" class="ml-4 transition-colors duration-300 ease-in-out footer-social-icon">
             <IconYoutube class="w-7 h-6"/>
           </a>
+          <a href="#" target="_blank" class="ml-4 transition-colors duration-300 ease-in-out footer-social-icon">
+            <IconCommunity class="w-6 h-6"/>
+          </a>
+          <a href="#" target="_blank" class="ml-4 transition-colors duration-300 ease-in-out footer-social-icon">
+            <IconDocumentation class="w-6 h-6"/>
+          </a>
+          <a href="#" target="_blank" class="ml-4 transition-colors duration-300 ease-in-out footer-social-icon">
+            <IconSupport class="w-6 h-6"/>
+          </a>
         </div>
       </div>
     </div>
@@ -111,15 +123,5 @@ footer {
   color: var(--footer-social-icon-hover);
 }
 
-/* 
-  Placeholder styles for social icons.
-  You need to integrate an icon library (like Font Awesome) or use SVGs.
-  The content property is removed to hide the placeholder text.
-*/
-.icon-kooliepa, .icon-bilibili, .icon-youtube {
-  display: inline-block;
-  width: 1.25em; /* Ensure the icon has space */
-  height: 1.25em; /* Ensure the icon has space */
-  /* Your icon styles (e.g., background-image for SVG) would go here */
-}
+
 </style>
