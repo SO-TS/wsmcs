@@ -23,9 +23,8 @@ local_protocol = "http"
 
 
 # 告诉 Wrangler 在哪里找到我们的源代码
-[assets]
-directory = "./dist"
-binding = "ASSETS"
+[site]
+bucket = "./dist"
 
 # 性能优化 - 免费计划限制
 [limits]
