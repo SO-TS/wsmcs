@@ -1,0 +1,42 @@
+name: Test Build
+
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Build & Test
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.12.0'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project
+        run: npm run build
+
+      - name: Test Cloudflare Workers build
+        run: npm run test:cloudflare
+
+      - name: Verify dist directory
+        run: |
+          if [ ! -d "dist" ]; then
+            echo "❌ dist directory not found"
+            exit 1
+          fi
+          echo "✅ Build successful"
+          echo "Artifacts:"
+          ls -lh dist/
