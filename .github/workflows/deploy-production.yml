@@ -31,12 +31,7 @@ jobs:
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          secrets: |
-            API_KEY
-            API_SECRET
         env:
-          API_KEY: ${{ secrets.API_KEY }}
-          API_SECRET: ${{ secrets.API_SECRET }}
           ENVIRONMENT: production
 
       - name: Notify deployment
