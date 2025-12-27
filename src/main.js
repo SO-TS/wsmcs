@@ -2,7 +2,7 @@ import './assets/main.css'
 
 import { createApp } from 'vue'
 import App from './App.vue'
-import i18n from './i18n'
+import i18n from './locales/i18n'
 import vEdgeGlow from './directives/v-edge-glow'
 import vScrollFade from './directives/v-scroll-fade'
 import AOS from 'aos'

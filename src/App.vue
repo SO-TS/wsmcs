@@ -9,14 +9,14 @@ import { ref, onMounted, watch, defineAsyncComponent } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 // Component Imports - PageHeader and HeroSection loaded immediately for better UX
-import PageHeader from './components/PageHeader.vue';
-import HeroSection from './components/HeroSection.vue';
+import PageHeader from './layouts/PageHeader.vue';
+import HeroSection from './pages/HeroSection.vue';
 
 // Lazy load non-critical components
-const FeaturesSection = defineAsyncComponent(() => import('./components/FeaturesSection.vue'));
-const TeamSection = defineAsyncComponent(() => import('./components/TeamSection.vue'));
-const CTASection = defineAsyncComponent(() => import('./components/CTASection.vue'));
-const PageFooter = defineAsyncComponent(() => import('./components/PageFooter.vue'));
+const FeaturesSection = defineAsyncComponent(() => import('./pages/FeaturesSection.vue'));
+const TeamSection = defineAsyncComponent(() => import('./pages/TeamSection.vue'));
+const CTASection = defineAsyncComponent(() => import('./pages/CTASection.vue'));
+const PageFooter = defineAsyncComponent(() => import('./layouts/PageFooter.vue'));
 
 const { locale } = useI18n();
 
