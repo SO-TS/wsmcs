@@ -11,7 +11,7 @@
     "build": "vite build",
     "preview": "vite preview --host",
     "optimize:images": "node scripts/optimize-images-sharp.js",
-    "build:worker": "wrangler publish",
+    "build:worker": "vite build",
     "deploy:cloudflare": "npm run build && wrangler publish",
     "deploy:prod": "npm run build && wrangler publish --env production",
     "deploy:staging": "npm run build && wrangler publish --env staging",
