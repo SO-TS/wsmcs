@@ -1,0 +1,48 @@
+name = "wsmcs"
+main = "dist/index.js"
+compatibility_date = "2024-12-16"
+
+# 定义环境
+[env.production]
+name = "wsmcs-prod"
+routes = [
+  { pattern = "wsmcs.cn", zone_name = "wsmcs.cn" },
+  { pattern = "*.wsmcs.cn", zone_name = "wsmcs.cn" }
+]
+vars = { ENVIRONMENT = "production" }
+
+[env.staging]
+name = "wsmcs-staging"
+routes = [
+  { pattern = "staging.wsmcs.cn", zone_name = "wsmcs.cn" }
+]
+vars = { ENVIRONMENT = "staging" }
+
+# 构建配置
+[build]
+command = "npm run build && npm run build:worker"
+cwd = "."
+watch_paths = ["src/**/*.js", "src/**/*.vue", "src/**/*.css"]
+
+# 开发配置
+[dev]
+port = 8787
+local_protocol = "http"
+
+# 兼容性标志
+compatibility_flags = [
+  "nodejs_compat",
+  "streams_enable_constructors"
+]
+
+# 依赖配置
+[durable_objects]
+bindings = []
+
+# 告诉 Wrangler 在哪里找到我们的源代码
+[site]
+bucket = "./dist"
+
+# 性能优化
+[limits]
+cpu_milliseconds = 50
