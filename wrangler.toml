@@ -18,10 +18,7 @@ routes = [
 ]
 vars = { ENVIRONMENT = "staging" }
 
-# 构建配置
-[build]
-command = "npm run build && npm run build:worker"
-cwd = "."
+
 
 # 开发配置
 [dev]
