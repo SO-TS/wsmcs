@@ -14,9 +14,7 @@
     "build:worker": "vite build && node scripts/generate-manifest.js",
     "deploy:cloudflare": "npm run build && wrangler publish",
     "deploy:prod": "npm run build && wrangler publish --env production",
-    "deploy:staging": "npm run build && wrangler publish --env staging",
-    "dev:cloudflare": "wrangler dev --local",
-    "test:cloudflare": "wrangler publish --dry-run"
+    "dev:cloudflare": "wrangler dev --local"
   },
   "dependencies": {
     "aos": "^2.3.4",

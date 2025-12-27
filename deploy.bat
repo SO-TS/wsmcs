@@ -22,12 +22,9 @@ call npm run build
 if "!ENV!"=="production" (
   echo 🌐 部署到生产环境...
   call npm run deploy:prod
-) else if "!ENV!"=="staging" (
-  echo 🧪 部署到暂存环境...
-  call npm run deploy:staging
 ) else (
   echo ❓ 未知环境: !ENV!
-  echo 用法: deploy.bat [production^|staging]
+  echo 用法: deploy.bat [production]
   exit /b 1
 )
 

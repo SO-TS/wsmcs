@@ -68,7 +68,7 @@ npm run build && npm run deploy:prod
 ### 部署到暂存环境
 
 ```bash
-npm run deploy:staging
+npm run deploy:prod
 ```
 
 ### 快速部署（默认环境）
@@ -109,9 +109,6 @@ Workers 脚本，处理：
 ```toml
 [env.production]
 vars = { ENVIRONMENT = "production" }
-
-[env.staging]
-vars = { ENVIRONMENT = "staging" }
 ```
 
 在 worker 中访问：
