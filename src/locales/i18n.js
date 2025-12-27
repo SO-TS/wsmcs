@@ -6,6 +6,8 @@ const messages = {
       home: '首页',
       docs: '文档',
       map: '实时地图',
+      language_zh: '中文',
+      language_en: 'English',
     },
     hero: {
       title: '繁星之望服务器',
@@ -81,6 +83,8 @@ const messages = {
       home: 'Home',
       docs: 'Docs',
       map: 'Live Map',
+      language_zh: '中文',
+      language_en: 'English',
     },
     hero: {
       title: 'Star Wish Server',

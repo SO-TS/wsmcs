@@ -22,6 +22,7 @@
     "aos": "^2.3.4",
     "vue": "^3.5.22",
     "vue-i18n": "^11.2.1",
+    "vue-router": "^4.5.0",
     "vue-toastification": "^2.0.0-rc.5"
   },
   "devDependencies": {
