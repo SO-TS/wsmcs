@@ -22,18 +22,11 @@ vars = { ENVIRONMENT = "staging" }
 [build]
 command = "npm run build && npm run build:worker"
 cwd = "."
-watch_paths = ["src/**/*.js", "src/**/*.vue", "src/**/*.css"]
 
 # 开发配置
 [dev]
 port = 8787
 local_protocol = "http"
-
-# 兼容性标志
-compatibility_flags = [
-  "nodejs_compat",
-  "streams_enable_constructors"
-]
 
 # 依赖配置
 [durable_objects]
@@ -43,6 +36,12 @@ bindings = []
 [site]
 bucket = "./dist"
 
-# 性能优化
+# 兼容性标志
+compatibility_flags = [
+  "nodejs_compat",
+  "streams_enable_constructors"
+]
+
+# 性能优化 - 免费计划限制
 [limits]
-cpu_milliseconds = 50
+cpu_ms = 10
