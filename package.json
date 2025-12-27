@@ -8,10 +8,10 @@
   },
   "scripts": {
     "dev": "vite --host",
-    "build": "vite build",
+    "build": "vite build && node scripts/generate-manifest.js",
     "preview": "vite preview --host",
     "optimize:images": "node scripts/optimize-images-sharp.js",
-    "build:worker": "vite build",
+    "build:worker": "vite build && node scripts/generate-manifest.js",
     "deploy:cloudflare": "npm run build && wrangler publish",
     "deploy:prod": "npm run build && wrangler publish --env production",
     "deploy:staging": "npm run build && wrangler publish --env staging",
@@ -35,6 +35,6 @@
     "vite": "^7.1.11",
     "vite-plugin-compression": "^0.5.1",
     "vite-plugin-vue-devtools": "^8.0.3",
-    "wrangler": "^3.67.1"
+    "wrangler": "^4.54.0"
   }
 }
