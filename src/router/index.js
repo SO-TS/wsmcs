@@ -11,7 +11,7 @@ const BadGatewayError = () => import('../views/error/BadGatewayError.vue');
 const ServiceUnavailableError = () => import('../views/error/ServiceUnavailableError.vue');
 
 // 语言配置
-const supportedLocales = ['zh', 'en'];
+const supportedLocales = ['zh_CN', 'en'];
 
 // 从URL中提取语言
 function getLocaleFromPath(path) {
@@ -25,15 +25,24 @@ function getLocaleFromPath(path) {
 // 根据路径设置语言
 function setLocaleByPath(path) {
   const locale = getLocaleFromPath(path);
+  let targetLocale = locale;
+  
   if (locale && supportedLocales.includes(locale)) {
-    i18n.global.locale = locale;
     // 保存到本地存储
     localStorage.setItem('locale', locale);
   } else {
     // 如果路径中没有语言，则使用默认语言或存储的语言
-    const savedLocale = localStorage.getItem('locale') || 'zh';
-    i18n.global.locale = savedLocale;
+    targetLocale = localStorage.getItem('locale') || 'zh_CN';
+    localStorage.setItem('locale', targetLocale);
   }
+  
+  // 确保语言设置正确应用
+  if (i18n.global.locale !== targetLocale) {
+    i18n.global.locale = targetLocale;
+  }
+  
+  // 确保语言设置立即生效
+  console.log('Locale set to:', targetLocale, 'Current locale:', i18n.global.locale);
 }
 
 // 路由配置
@@ -42,22 +51,22 @@ const routes = [
   {
     path: '/',
     redirect: (to) => {
-      const savedLocale = localStorage.getItem('locale') || 'zh';
+      const savedLocale = localStorage.getItem('locale') || 'zh_CN';
       return `/${savedLocale}/`;
     }
   },
-  // 中文路径
+  // 简体中文路径
   {
-    path: '/zh/',
-    name: 'HomeZh',
+    path: '/zh_CN/',
+    name: 'HomeZhCN',
     component: HomeView,
-    meta: { locale: 'zh' }
+    meta: { locale: 'zh_CN' }
   },
   {
-    path: '/zh/:pathMatch(.*)*',
-    name: 'CatchAllZh',
+    path: '/zh_CN/:pathMatch(.*)*',
+    name: 'CatchAllZhCN',
     component: HomeView,
-    meta: { locale: 'zh' }
+    meta: { locale: 'zh_CN' }
   },
   // 英文路径
   {
@@ -72,42 +81,42 @@ const routes = [
     component: HomeView,
     meta: { locale: 'en' }
   },
-  // 错误页面路由 - 中文
+  // 错误页面路由 - 简体中文
   {
-    path: '/zh/404',
-    name: 'NotFoundZh',
+    path: '/zh_CN/404',
+    name: 'NotFoundZhCN',
     component: NotFound,
-    meta: { locale: 'zh' }
+    meta: { locale: 'zh_CN' }
   },
   {
-    path: '/zh/500',
-    name: 'InternalServerErrorZh',
+    path: '/zh_CN/500',
+    name: 'InternalServerErrorZhCN',
     component: InternalServerError,
-    meta: { locale: 'zh' }
+    meta: { locale: 'zh_CN' }
   },
   {
-    path: '/zh/403',
-    name: 'ForbiddenErrorZh',
+    path: '/zh_CN/403',
+    name: 'ForbiddenErrorZhCN',
     component: ForbiddenError,
-    meta: { locale: 'zh' }
+    meta: { locale: 'zh_CN' }
   },
   {
-    path: '/zh/401',
-    name: 'UnauthorizedErrorZh',
+    path: '/zh_CN/401',
+    name: 'UnauthorizedErrorZhCN',
     component: UnauthorizedError,
-    meta: { locale: 'zh' }
+    meta: { locale: 'zh_CN' }
   },
   {
-    path: '/zh/502',
-    name: 'BadGatewayErrorZh',
+    path: '/zh_CN/502',
+    name: 'BadGatewayErrorZhCN',
     component: BadGatewayError,
-    meta: { locale: 'zh' }
+    meta: { locale: 'zh_CN' }
   },
   {
-    path: '/zh/503',
-    name: 'ServiceUnavailableErrorZh',
+    path: '/zh_CN/503',
+    name: 'ServiceUnavailableErrorZhCN',
     component: ServiceUnavailableError,
-    meta: { locale: 'zh' }
+    meta: { locale: 'zh_CN' }
   },
   // 错误页面路由 - 英文
   {

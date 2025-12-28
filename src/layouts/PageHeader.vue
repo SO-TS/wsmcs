@@ -20,44 +20,7 @@ const scrollThreshold = 70;
 let ticking = false;
 let lastScrollY = 0;
 
-// 切換語言
-function switchLanguage(lang) {
-  console.log('Switching language to:', lang); // 调试信息
-  // 更新国际化语言
-  locale.value = lang;
-  // 保存語言選擇到本地存儲
-  localStorage.setItem('locale', lang);
-  
-  // 修改當前路由以包含語言前綴
-  const currentPath = route.path;
-  console.log('Current path:', currentPath); // 调试信息
-  
-  // 如果當前路徑是以語言代碼開頭的，則替換語言代碼；否則添加語言代碼
-  let newPath;
-  if (/^\/(zh|en)\//.test(currentPath)) {
-    // 如果當前路徑已經包含語言前綴，替換它
-    newPath = currentPath.replace(/^\/(zh|en)\//, `/${lang}/`);
-  } else if (/^\/(zh|en)$/.test(currentPath)) {
-    // 如果當前路徑就是語言前綴
-    newPath = `/${lang}/`;
-  } else {
-    // 如果當前路徑不包含語言前綴，添加它
-    newPath = `/${lang}${currentPath === '/' ? '' : currentPath}`;
-  }
-  
-  console.log('New path:', newPath); // 调试信息
-  
-  // 路由跳转
-  router.push(newPath).then(() => {
-    console.log('Navigation successful'); // 调试信息
-    // 强制更新国际化实例
-    i18n.global.locale = lang;
-  }).catch(err => {
-    console.error('Navigation error:', err); // 错误信息
-    // 如果路由跳转失败，至少更新语言
-    i18n.global.locale = lang;
-  });
-}
+
 
 // Throttled scroll handler for better performance
 function handleScroll() {
@@ -79,7 +42,8 @@ onMounted(() => {
 
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll);
-});</script>
+});
+</script>
 
 <template>
   <header 
@@ -99,8 +63,8 @@ onUnmounted(() => {
       <!-- New Navigation Links (Right) -->
       <nav class="flex items-center space-x-8">
         <a href="#" class="nav-link nav-link-active">{{ t('nav.home') }}</a>
-        <a href="#" class="nav-link">{{ t('nav.docs') }}</a>
-        <a href="#" class="nav-link">{{ t('nav.map') }}</a>
+        <a href="https://docs.wsmcs.top" class="nav-link">{{ t('nav.docs') }}</a>
+        <a href="https://map.wsmcs.top" class="nav-link">{{ t('nav.map') }}</a>
         <!-- Language Switcher -->
         <div class="language-switcher relative group">
           <button class="lang-btn flex items-center justify-center w-8 h-8 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200" 
@@ -109,15 +73,15 @@ onUnmounted(() => {
               <path d="m5 8 6 6M4 14l6-6 2-3M2 5h12M7 2h1M22 22l-5-10-5 10M14 18h6" />
             </svg>
           </button>
-          <div class="lang-dropdown absolute right-0 mt-1.5 min-w-[120px] bg-white dark:bg-gray-800 rounded-md shadow-lg border border-gray-200 dark:border-gray-700 py-1 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-in-out transform translate-y-1 group-hover:translate-y-0">
-            <button @click="switchLanguage('zh')" class="block w-full text-left px-3 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center space-x-2 transition-colors duration-150 ease-in-out relative z-10">
+          <div class="lang-dropdown absolute right-0 mt-1.5 min-w-max w-auto bg-white dark:bg-gray-800 rounded-md shadow-lg border border-gray-200 dark:border-gray-700 py-1 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-in-out transform translate-y-1 group-hover:translate-y-0">
+            <a :href="`/zh_CN${route.path.replace(/^\/(zh_CN|en)?\/?/, '/')}`" class="block w-full text-left px-3 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center space-x-2 transition-colors duration-150 ease-in-out relative z-10">
               <span class="inline-flex items-center justify-center w-5 h-5 text-base leading-4 align-middle">🇨🇳</span>
               <span class="leading-5">{{ t('nav.language_zh') || '中文' }}</span>
-            </button>
-            <button @click="switchLanguage('en')" class="block w-full text-left px-3 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center space-x-2 transition-colors duration-150 ease-in-out relative z-10">
+            </a>
+            <a :href="`/en${route.path.replace(/^\/(zh_CN|en)?\/?/, '/')}`" class="block w-full text-left px-3 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center space-x-2 transition-colors duration-150 ease-in-out relative z-10">
               <span class="inline-flex items-center justify-center w-5 h-5 text-base leading-4 align-middle">🇺🇸</span>
               <span class="leading-5">{{ t('nav.language_en') || 'English' }}</span>
-            </button>
+            </a>
           </div>
         </div>
       </nav>

@@ -8,6 +8,24 @@ import vScrollFade from './directives/v-scroll-fade'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 
+// 在應用初始化時根據路徑設置語言
+const path = window.location.pathname;
+const supportedLocales = ['zh_CN', 'en'];
+const pathParts = path.split('/').filter(part => part !== '');
+let detectedLocale = null;
+
+if (pathParts.length > 0 && supportedLocales.includes(pathParts[0])) {
+  detectedLocale = pathParts[0];
+}
+
+if (detectedLocale) {
+  i18n.global.locale = detectedLocale;
+  localStorage.setItem('locale', detectedLocale);
+} else {
+  const savedLocale = localStorage.getItem('locale') || 'zh_CN';
+  i18n.global.locale = savedLocale;
+}
+
 const app = createApp(App)
 app.use(i18n)
 app.use(router)
