@@ -1,13 +1,21 @@
 import { createI18n } from 'vue-i18n'
 
 const messages = {
-  zh: {
+
+  zh_CN: {
+
     nav: {
+
       home: '首页',
+
       docs: '文档',
+
       map: '实时地图',
-      language_zh: '中文',
+
+      language_zh: '简体中文',
+
       language_en: 'English',
+
     },
     hero: {
       title: '繁星之望服务器',
@@ -101,8 +109,8 @@ const messages = {
       home: 'Home',
       docs: 'Docs',
       map: 'Live Map',
-      language_zh: '中文',
-      language_en: 'English',
+      language_zh: '简体中文',
+      language_en: '英文',
     },
     hero: {
       title: 'Star Wish Server',
@@ -196,7 +204,7 @@ const messages = {
 
 const i18n = createI18n({
   legacy: false, // use Composition API
-  locale: 'zh', // set default locale
+  locale: 'zh_CN', // set default locale
   fallbackLocale: 'en', // set fallback locale
   messages, // set locale messages
 })
