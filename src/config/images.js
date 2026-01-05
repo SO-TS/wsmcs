@@ -1,17 +1,17 @@
 export const IMAGES = {
   // Hero and CTA background images with thumbnail versions for progressive loading
-  heroBg: '/images/hero-bg.png',
-  heroBgThumbnail: '/images/hero-bg-thumb.png',
-  ctaBg: '/images/hero-bg.png',
-  ctaBgThumbnail: '/images/hero-bg-thumb.png',
+  heroBg: '/images/hero-bg.webp',
+  heroBgThumbnail: '/images/hero-bg-thumb.webp',
+  ctaBg: '/images/hero-bg.webp',
+  ctaBgThumbnail: '/images/hero-bg-thumb.webp',
   
   // Feature images with thumbnails
-  featureSurvival: '/images/survival.png',
-  featureSurvivalThumbnail: '/images/survival-thumb.png',
-  featureSkyblock: '/images/slimefun.png',
-  featureSkyblockThumbnail: '/images/slimefun-thumb.png',
-  featureBedwars: '/images/bedwars.png',
-  featureBedwarsThumbnail: '/images/bedwars-thumb.png',
+  featureSurvival: '/images/survival.webp',
+  featureSurvivalThumbnail: '/images/survival-thumb.webp',
+  featureSkyblock: '/images/slimefun.webp',
+  featureSkyblockThumbnail: '/images/slimefun-thumb.webp',
+  featureBedwars: '/images/bedwars.webp',
+  featureBedwarsThumbnail: '/images/bedwars-thumb.webp',
   
   // External avatars (already optimized by QQ, no thumbnail needed)
   avatarApart: 'https://q1.qlogo.cn/g?b=qq&nk=3412969657&s=100',

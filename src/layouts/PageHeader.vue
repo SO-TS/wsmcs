@@ -8,7 +8,7 @@
 import { ref, onMounted, onUnmounted, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-import logoUrl from '@/assets/wsmcs-logo.png'
+import logoUrl from '@/assets/wsmcs-logo.webp'
 import { useRouter, useRoute } from 'vue-router';
 
 const { t, locale } = useI18n();
