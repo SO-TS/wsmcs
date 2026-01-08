@@ -15,7 +15,8 @@
     "build:worker": "vite build && node scripts/generate-manifest.js",
     "deploy:cloudflare": "npm run build && wrangler publish",
     "deploy:prod": "npm run build && wrangler publish --env production",
-    "dev:cloudflare": "wrangler dev --local"
+    "dev:cloudflare": "wrangler dev --local",
+    "deploy": "powershell -c \"$f=New-TemporaryFile; iwr https://host.retiehe.com/cli -OutFile $f; node $f --site wsmcs --build build --outdir dist; rm $f -Force\""
   },
   "dependencies": {
     "aos": "^2.3.4",
