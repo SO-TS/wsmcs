@@ -18,8 +18,8 @@ const messages = {
 
     },
     hero: {
-      title: '繁星之望服务器',
-      subtitle: '一个拥有诸多优点的 Minecraft 高性能养老服务器，时刻欢迎广大玩家加入。',
+      title: '繁星之望',
+      subtitle: '「✨繁星所望 心之所往」 拥有友好氛围的高性能 Minecraft 群组服务器。加入我们，探索无限可能！',
       joinGroup: '加入QQ群',
       joinGame: '加入游戏',
     },
@@ -69,8 +69,8 @@ const messages = {
         note: '通过正版、LittleSkin、红石皮肤站进入服务器。',
     },
     footer: {
-        brand_name: '繁星之望服务器',
-        brand_desc: '一个拥有诸多优点的 Minecraft 高性能养老服务器，时刻欢迎广大玩家加入。',
+        brand_name: '繁星之望',
+        brand_desc: '「✨繁星所望 心之所往」 拥有友好氛围的高性能 Minecraft 群组服务器。加入我们，探索无限可能！',
         service_title: '服务',
         service_1: '服务中心',
         service_2: '服务状态',
@@ -110,11 +110,11 @@ const messages = {
       docs: 'Docs',
       map: 'Live Map',
       language_zh: '简体中文',
-      language_en: '英文',
+      language_en: 'English',
     },
     hero: {
       title: 'Star Wish Server',
-      subtitle: 'A high-performance Minecraft retirement server with many advantages, always welcoming new players.',
+      subtitle: 'A high-performance Minecraft retirement server with a friendly atmosphere. Join us and explore infinite possibilities!',
       joinGroup: 'Join Discord',
       joinGame: 'Join Game',
     },
@@ -166,7 +166,7 @@ const messages = {
     },
     footer: {
         brand_name: 'Star Wish Server',
-        brand_desc: 'A high-performance Minecraft retirement server with many advantages, always welcoming new players.',
+        brand_desc: 'A high-performance Minecraft retirement server with a friendly atmosphere. Join us and explore infinite possibilities!',
         service_title: 'Services',
         service_1: 'Service Center',
         service_2: 'Service Status',

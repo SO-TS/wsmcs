@@ -94,8 +94,8 @@ onMounted(() => {
   
   // Set initial SEO tags
   updateMetaTags(
-    '繁星之望服务器 - WSMCS',
-    '一个拥有诸多优点的 Minecraft 高性能养老服务器'
+    '繁星之望 - WSMCS',
+    '「✨繁星所望 心之所往」 拥有友好氛围的高性能 Minecraft 群组服务器，包括高版本生电、单方块粘液、起床战争等多种游戏模式。加入我们，探索无限可能！'
   );
   
   // Load theme preference using non-blocking approach
