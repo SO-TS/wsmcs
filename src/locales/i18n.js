@@ -19,7 +19,7 @@ const messages = {
     },
     hero: {
       title: '繁星之望',
-      subtitle: '「✨繁星所望 心之所往」 拥有友好氛围的高性能 Minecraft 群组服务器。加入我们，探索无限可能！',
+      subtitle: '「✨繁星所望 心之所往」\n 拥有友好氛围的高性能 Minecraft 群组服务器。加入我们，探索无限可能！',
       joinGroup: '加入QQ群',
       joinGame: '加入游戏',
     },
@@ -70,7 +70,7 @@ const messages = {
     },
     footer: {
         brand_name: '繁星之望',
-        brand_desc: '「✨繁星所望 心之所往」 拥有友好氛围的高性能 Minecraft 群组服务器。加入我们，探索无限可能！',
+        brand_desc: '「✨繁星所望 心之所往」\n 拥有友好氛围的高性能 Minecraft 群组服务器。加入我们，探索无限可能！',
         service_title: '服务',
         service_1: '服务中心',
         service_2: '服务状态',
@@ -114,7 +114,7 @@ const messages = {
     },
     hero: {
       title: 'Star Wish Server',
-      subtitle: 'A high-performance Minecraft retirement server with a friendly atmosphere. Join us and explore infinite possibilities!',
+      subtitle: 'A high-performance Minecraft retirement server\n with a friendly atmosphere. Join us and explore infinite possibilities!',
       joinGroup: 'Join Discord',
       joinGame: 'Join Game',
     },
@@ -166,7 +166,7 @@ const messages = {
     },
     footer: {
         brand_name: 'Star Wish Server',
-        brand_desc: 'A high-performance Minecraft retirement server with a friendly atmosphere. Join us and explore infinite possibilities!',
+        brand_desc: 'A high-performance Minecraft retirement server\n with a friendly atmosphere. Join us and explore infinite possibilities!',
         service_title: 'Services',
         service_1: 'Service Center',
         service_2: 'Service Status',
