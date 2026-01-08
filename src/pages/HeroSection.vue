@@ -56,11 +56,10 @@ const heroBackgroundStyle = {
         <!-- Hero Title -->
         <h1 class="text-6xl font-bold mb-4 tracking-wide">{{ t('hero.title') }}</h1> <!-- Changed to text-6xl -->
         <!-- Hero Subtitle -->
-        <p class="text-2xl mb-8 opacity-90 font-light">
-          <span v-for="(line, index) in t('hero.subtitle').split('\n')" :key="index">
-            {{ line }}
-            <br v-if="index < t('hero.subtitle').split('\n').length - 1">
-          </span>
+        <p class="text-2xl mb-8 opacity-90 font-light leading-relaxed">
+          <span class="block text-2xl mb-2">{{ t('hero.subtitle').split('\n')[0] }}</span>
+          <span class="block ml-6 text-xl mb-2">{{ t('hero.subtitle').split('\n')[1] }}</span>
+          <span class="block ml-6 text-xl">{{ t('hero.subtitle').split('\n')[2] }}</span>
         </p> <!-- Changed to text-2xl -->
         <!-- Call-to-action buttons, underneath text -->
         <div class="flex space-x-4">

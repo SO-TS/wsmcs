@@ -28,7 +28,11 @@ const { t } = useI18n();
             <img :src="logoUrl" alt="WSMCS Logo" class="w-6 h-6 mr-2 object-contain aspect-square block" />
             {{ t('footer.brand_name') }}
           </div>
-          <p class="mb-5 max-w-xs footer-desc-text">{{ t('footer.brand_desc') }}</p>
+          <p class="mb-5 max-w-xs footer-desc-text leading-relaxed">
+            <span class="block text-base mb-1">{{ t('footer.brand_desc_line1') }}</span>
+            <span class="block ml-4 text-sm mb-1">{{ t('footer.brand_desc_line2') }}</span>
+            <span class="block ml-4 text-sm">{{ t('footer.brand_desc_line3') }}</span>
+          </p>
         </div>
         <!-- Services Column -->
         <div class="footer-col">
