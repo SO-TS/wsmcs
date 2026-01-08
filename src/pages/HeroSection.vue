@@ -50,19 +50,19 @@ const heroBackgroundStyle = {
     <div class="absolute inset-0 bg-gradient-to-r from-black/60 to-black/40 z-10"></div>
     
     <!-- Main content wrapper -->
-    <div class="max-w-7xl mx-auto px-6 w-full flex justify-start items-center relative z-20">
+    <div class="max-w-7xl mx-auto px-6 w-full flex justify-center md:justify-start items-center relative z-20">
       <!-- Content block (text + buttons) -->
-      <div class="max-w-xl fade-in-up">
+      <div class="max-w-xl fade-in-up w-full text-center md:text-left">
         <!-- Hero Title -->
-        <h1 class="text-6xl font-bold mb-4 tracking-wide">{{ t('hero.title') }}</h1> <!-- Changed to text-6xl -->
+        <h1 class="text-4xl md:text-6xl font-bold mb-4 tracking-wide">{{ t('hero.title') }}</h1> <!-- Changed to responsive text size -->
         <!-- Hero Subtitle -->
-        <p class="text-2xl mb-8 opacity-90 font-light leading-relaxed">
-          <span class="block text-2xl mb-2">{{ t('hero.subtitle').split('\n')[0] }}</span>
-          <span class="block ml-6 text-xl mb-2">{{ t('hero.subtitle').split('\n')[1] }}</span>
-          <span class="block ml-6 text-xl">{{ t('hero.subtitle').split('\n')[2] }}</span>
-        </p> <!-- Changed to text-2xl -->
+        <p class="text-xl md:text-2xl mb-8 opacity-90 font-light leading-relaxed">
+          <span class="block text-xl md:text-2xl mb-2">{{ t('hero.subtitle').split('\n')[0] }}</span>
+          <span class="block ml-0 md:ml-6 text-lg md:text-xl mb-2">{{ t('hero.subtitle').split('\n')[1] }}</span>
+          <span class="block ml-0 md:ml-6 text-lg md:text-xl">{{ t('hero.subtitle').split('\n')[2] }}</span>
+        </p> <!-- Changed to responsive text size -->
         <!-- Call-to-action buttons, underneath text -->
-        <div class="flex space-x-4">
+        <div class="flex space-x-4 justify-center md:justify-start">
           <a href="https://qm.qq.com/q/YIyqEGcMes" target="_blank" rel="noopener noreferrer" class="hero-btn-primary">{{ t('hero.joinGroup') }}</a>
           <button @click="scrollToCTASection" class="hero-btn-secondary">{{ t('hero.joinGame') }}</button>
         </div>
