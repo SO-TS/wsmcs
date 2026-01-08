@@ -47,7 +47,7 @@ const heroBackgroundStyle = {
     />
     
     <!-- Dark overlay for text readability -->
-    <div class="absolute inset-0 bg-gradient-to-r from-black/60 to-black/40 z-10"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-black/30 to-black/10 z-10"></div>
     
     <!-- Main content wrapper -->
     <div class="max-w-7xl mx-auto px-6 w-full flex justify-center md:justify-start items-center relative z-20">
