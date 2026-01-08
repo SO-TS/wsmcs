@@ -40,9 +40,28 @@ function setLocaleByPath(path) {
   if (i18n.global.locale !== targetLocale) {
     i18n.global.locale = targetLocale;
   }
+}
+
+// 动态更新hreflang标签
+function updateHreflangTags(currentLocale) {
+  // 移除现有的hreflang标签
+  const existingLinks = document.querySelectorAll('link[rel="alternate"][hreflang]');
+  existingLinks.forEach(link => link.remove());
   
-  // 确保语言设置立即生效
-  console.log('Locale set to:', targetLocale, 'Current locale:', i18n.global.locale);
+  // 添加新的hreflang标签
+  const locales = {
+    'zh-CN': `https://wsmcs.top/zh_CN/`,
+    'en': `https://wsmcs.top/en/`,
+    'x-default': `https://wsmcs.top/zh_CN/`
+  };
+  
+  for (const [lang, url] of Object.entries(locales)) {
+    const link = document.createElement('link');
+    link.rel = 'alternate';
+    link.hreflang = lang;
+    link.href = url;
+    document.head.appendChild(link);
+  }
 }
 
 // 路由配置
@@ -192,6 +211,10 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   // 检测路径中的语言并设置
   setLocaleByPath(to.path);
+  
+  // 更新hreflang标签
+  updateHreflangTags(i18n.global.locale.value);
+  
   next();
 });
 

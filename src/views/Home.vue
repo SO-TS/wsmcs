@@ -6,6 +6,7 @@
 
 import { ref, onMounted, watch, defineAsyncComponent } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { useSEO } from '../composables/useSEO';
 
 // Component Imports - PageHeader and HeroSection loaded immediately for better UX
 import PageHeader from '../layouts/PageHeader.vue';
@@ -18,51 +19,10 @@ const CTASection = defineAsyncComponent(() => import('../pages/CTASection.vue'))
 const PageFooter = defineAsyncComponent(() => import('../layouts/PageFooter.vue'));
 
 const { locale } = useI18n();
+const { setSEO } = useSEO();
 
 /* Theme Management */
 const theme = ref('light');
-
-// Cache DOM elements to avoid repeated queries
-const metaCache = {
-  description: null,
-  ogTitle: null,
-  ogDescription: null,
-  initialized: false
-};
-
-/**
- * Initialize meta tag cache (one-time operation)
- */
-function initializeMetaCache() {
-  if (metaCache.initialized) return;
-  
-  metaCache.description = document.querySelector('meta[name="description"]');
-  metaCache.ogTitle = document.querySelector('meta[property="og:title"]');
-  metaCache.ogDescription = document.querySelector('meta[property="og:description"]');
-  metaCache.initialized = true;
-}
-
-/**
- * Optimized SEO Meta Tags Management
- * Uses cached DOM elements to avoid repeated querySelector calls
- */
-function updateMetaTags(title, description) {
-  // Update page title
-  document.title = title;
-  
-  // Batch update cached meta tags
-  if (metaCache.description) {
-    metaCache.description.setAttribute('content', description);
-  }
-  
-  if (metaCache.ogTitle) {
-    metaCache.ogTitle.setAttribute('content', title);
-  }
-  
-  if (metaCache.ogDescription) {
-    metaCache.ogDescription.setAttribute('content', description);
-  }
-}
 
 /**
  * Optimized theme switcher with lazy evaluation
@@ -89,14 +49,8 @@ watch(theme, (newTheme) => {
 }, { immediate: true });
 
 onMounted(() => {
-  // Initialize meta cache
-  initializeMetaCache();
-  
-  // Set initial SEO tags
-  updateMetaTags(
-    '繁星之望 - WSMCS',
-    '「✨繁星所望 心之所往」 拥有友好氛围的高性能 Minecraft 群组服务器，包括高版本生电、单方块粘液、起床战争等多种游戏模式。加入我们，探索无限可能！'
-  );
+  // Set initial SEO tags using the new SEO composable
+  setSEO(null, `Home${locale.value === 'en' ? 'En' : 'ZhCN'}`);
   
   // Load theme preference using non-blocking approach
   requestIdleCallback?.(() => {

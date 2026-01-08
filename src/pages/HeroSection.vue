@@ -41,7 +41,7 @@ const heroBackgroundStyle = {
     <ProgressiveImage
       :src="IMAGES.heroBg"
       :thumbnail="IMAGES.heroBgThumbnail"
-      alt="英雄背景"
+      :alt="t('hero.title') + ' - ' + t('hero.subtitle').split('\n')[0]"
       loading="eager"
       class="hero-bg-image"
     />
