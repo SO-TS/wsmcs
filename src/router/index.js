@@ -16,8 +16,11 @@ const supportedLocales = ['zh_CN', 'en'];
 // 从URL中提取语言
 function getLocaleFromPath(path) {
   const pathParts = path.split('/').filter(part => part !== '');
-  if (pathParts.length > 0 && supportedLocales.includes(pathParts[0])) {
-    return pathParts[0];
+  if (pathParts.length > 0) {
+    // 检查路径的第一部分是否是支持的语言
+    if (pathParts[0] === 'zh_CN' || pathParts[0] === 'en') {
+      return pathParts[0];
+    }
   }
   return null;
 }
@@ -25,20 +28,20 @@ function getLocaleFromPath(path) {
 // 根据路径设置语言
 function setLocaleByPath(path) {
   const locale = getLocaleFromPath(path);
-  let targetLocale = locale;
   
   if (locale && supportedLocales.includes(locale)) {
-    // 保存到本地存储
+    // 如果路径中明确指定了支持的语言，则优先使用路径中的语言
     localStorage.setItem('locale', locale);
+    // 确保语言设置正确应用
+    if (i18n.global.locale.value !== locale) {
+      i18n.global.locale.value = locale;
+    }
   } else {
     // 如果路径中没有语言，则使用默认语言或存储的语言
-    targetLocale = localStorage.getItem('locale') || 'zh_CN';
-    localStorage.setItem('locale', targetLocale);
-  }
-  
-  // 确保语言设置正确应用
-  if (i18n.global.locale !== targetLocale) {
-    i18n.global.locale = targetLocale;
+    const targetLocale = localStorage.getItem('locale') || 'zh_CN';
+    if (i18n.global.locale.value !== targetLocale) {
+      i18n.global.locale.value = targetLocale;
+    }
   }
 }
 
@@ -70,7 +73,17 @@ const routes = [
   {
     path: '/',
     redirect: (to) => {
-      const savedLocale = localStorage.getItem('locale') || 'zh_CN';
+      // 检查用户浏览器语言偏好
+      const browserLang = navigator.language || navigator.languages[0];
+      let preferredLocale = 'zh_CN'; // 默认为中文
+      
+      if (browserLang.startsWith('en')) {
+        preferredLocale = 'en';
+      } else if (browserLang.startsWith('zh')) {
+        preferredLocale = 'zh_CN';
+      }
+      
+      const savedLocale = localStorage.getItem('locale') || preferredLocale;
       return `/${savedLocale}/`;
     }
   },

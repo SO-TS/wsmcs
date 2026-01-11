@@ -6,7 +6,7 @@
 
 import { onMounted } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { useSEO } from '../composables/useSEO';
+import { useSEO } from '../../composables/useSEO';
 
 const { t } = useI18n();
 const { setSEO } = useSEO();
