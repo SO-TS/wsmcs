@@ -115,7 +115,7 @@ const messages = {
       language_en: 'English',
     },
     hero: {
-      title: 'Star Wish Server',
+      title: 'Wishful Staller Minecraft Server',
       subtitle: 'A high-performance Minecraft retirement server\nwith a friendly atmosphere.\nJoin us and explore infinite possibilities!',
       joinGroup: 'Join Discord',
       joinGame: 'Join Game',
@@ -167,7 +167,7 @@ const messages = {
         note: 'Join via official launcher, LittleSkin, or RedstoneSkin.',
     },
     footer: {
-        brand_name: 'Star Wish Server',
+        brand_name: 'Wishful Staller Minecraft Server',
         brand_desc_line1: 'A high-performance Minecraft retirement server',
         brand_desc_line2: 'with a friendly atmosphere.',
         brand_desc_line3: 'Join us and explore infinite possibilities!',

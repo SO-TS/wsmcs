@@ -139,7 +139,7 @@ export function getSEODataByRoute(routeName, t, currentLocale) {
       image: defaultImage
     },
     'FeaturesEn': {
-      title: t('features.title') + ' - Star Wish Server',
+      title: t('features.title') + ' - Wishful Stellar Server',
       description: t('features.desc').replace(/\n/g, ' '),
       url: `${baseUrl}/en/#features`,
       image: defaultImage
@@ -153,7 +153,7 @@ export function getSEODataByRoute(routeName, t, currentLocale) {
       image: defaultImage
     },
     'TeamEn': {
-      title: t('team.title') + ' - Star Wish Server',
+      title: t('team.title') + ' - Wishful Stellar Server',
       description: t('team.desc').replace(/\n/g, ' '),
       url: `${baseUrl}/en/#team`,
       image: defaultImage
@@ -167,7 +167,7 @@ export function getSEODataByRoute(routeName, t, currentLocale) {
       image: defaultImage
     },
     'CTAEn': {
-      title: t('cta.title') + ' - Star Wish Server',
+      title: t('cta.title') + ' - Wishful Stellar Server',
       description: t('cta.title') + ' - ' + t('cta.version'),
       url: `${baseUrl}/en/#cta`,
       image: defaultImage
@@ -181,7 +181,7 @@ export function getSEODataByRoute(routeName, t, currentLocale) {
       image: defaultImage
     },
     'NotFoundEn': {
-      title: t('error.notFoundTitle') + ' - Star Wish Server',
+      title: t('error.notFoundTitle') + ' - Wishful Staller Minecraft Server',
       description: t('error.notFoundMessage'),
       url: `${baseUrl}/en/404`,
       image: defaultImage
@@ -193,7 +193,7 @@ export function getSEODataByRoute(routeName, t, currentLocale) {
       image: defaultImage
     },
     'InternalServerErrorEn': {
-      title: t('error.internalErrorTitle') + ' - Star Wish Server',
+      title: t('error.internalErrorTitle') + ' - Wishful Staller Minecraft Server',
       description: t('error.internalErrorMessage'),
       url: `${baseUrl}/en/500`,
       image: defaultImage
@@ -205,7 +205,7 @@ export function getSEODataByRoute(routeName, t, currentLocale) {
       image: defaultImage
     },
     'ForbiddenErrorEn': {
-      title: t('error.forbiddenTitle') + ' - Star Wish Server',
+      title: t('error.forbiddenTitle') + ' - Wishful Staller Minecraft Server',
       description: t('error.forbiddenMessage'),
       url: `${baseUrl}/en/403`,
       image: defaultImage
@@ -217,7 +217,7 @@ export function getSEODataByRoute(routeName, t, currentLocale) {
       image: defaultImage
     },
     'UnauthorizedErrorEn': {
-      title: t('error.unauthorizedTitle') + ' - Star Wish Server',
+      title: t('error.unauthorizedTitle') + ' - Wishful Staller Minecraft Server',
       description: t('error.unauthorizedMessage'),
       url: `${baseUrl}/en/401`,
       image: defaultImage
@@ -229,7 +229,7 @@ export function getSEODataByRoute(routeName, t, currentLocale) {
       image: defaultImage
     },
     'BadGatewayErrorEn': {
-      title: t('error.badGatewayTitle') + ' - Star Wish Server',
+      title: t('error.badGatewayTitle') + ' - Wishful Staller Minecraft Server',
       description: t('error.badGatewayMessage'),
       url: `${baseUrl}/en/502`,
       image: defaultImage
@@ -241,7 +241,7 @@ export function getSEODataByRoute(routeName, t, currentLocale) {
       image: defaultImage
     },
     'ServiceUnavailableErrorEn': {
-      title: t('error.serviceUnavailableTitle') + ' - Star Wish Server',
+      title: t('error.serviceUnavailableTitle') + ' - Wishful Staller Minecraft Server',
       description: t('error.serviceUnavailableMessage'),
       url: `${baseUrl}/en/503`,
       image: defaultImage
