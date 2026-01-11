@@ -140,7 +140,8 @@ function resetExpandedCard() {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease-in-out;
+  filter: brightness(1.1); /* 提亮图片，略微降低 */
+  transition: transform 0.5s ease-in-out, filter 0.3s ease-in-out;
   /* GPU acceleration for image transform */
   will-change: transform;
   transform: translateZ(0);
@@ -155,6 +156,7 @@ function resetExpandedCard() {
 
 .feature-card.is-expanded .feature-card-image {
   transform: scale(1.05);
+  filter: brightness(1.15); /* 展开时进一步提亮，但比之前更柔和 */
 }
 
 .feature-overlay {
