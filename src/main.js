@@ -10,12 +10,16 @@ import 'aos/dist/aos.css'
 
 // 在應用初始化時根據路徑設置語言
 const path = window.location.pathname;
-const supportedLocales = ['zh_CN', 'en'];
+// 从路由文件中导入支持的语言，确保一致性
 const pathParts = path.split('/').filter(part => part !== '');
 let detectedLocale = null;
 
-if (pathParts.length > 0 && supportedLocales.includes(pathParts[0])) {
-  detectedLocale = pathParts[0];
+// 优先尝试从路径中检测语言
+if (pathParts.length > 0) {
+  // 检查路径的第一部分是否是支持的语言
+  if (pathParts[0] === 'zh_CN' || pathParts[0] === 'en') {
+    detectedLocale = pathParts[0];
+  }
 }
 
 if (detectedLocale) {

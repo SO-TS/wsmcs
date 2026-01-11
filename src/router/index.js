@@ -16,8 +16,11 @@ const supportedLocales = ['zh_CN', 'en'];
 // 从URL中提取语言
 function getLocaleFromPath(path) {
   const pathParts = path.split('/').filter(part => part !== '');
-  if (pathParts.length > 0 && supportedLocales.includes(pathParts[0])) {
-    return pathParts[0];
+  if (pathParts.length > 0) {
+    // 检查路径的第一部分是否是支持的语言
+    if (pathParts[0] === 'zh_CN' || pathParts[0] === 'en') {
+      return pathParts[0];
+    }
   }
   return null;
 }
@@ -70,7 +73,17 @@ const routes = [
   {
     path: '/',
     redirect: (to) => {
-      const savedLocale = localStorage.getItem('locale') || 'zh_CN';
+      // 检查用户浏览器语言偏好
+      const browserLang = navigator.language || navigator.languages[0];
+      let preferredLocale = 'zh_CN'; // 默认为中文
+      
+      if (browserLang.startsWith('en')) {
+        preferredLocale = 'en';
+      } else if (browserLang.startsWith('zh')) {
+        preferredLocale = 'zh_CN';
+      }
+      
+      const savedLocale = localStorage.getItem('locale') || preferredLocale;
       return `/${savedLocale}/`;
     }
   },
@@ -213,7 +226,7 @@ router.beforeEach((to, from, next) => {
   setLocaleByPath(to.path);
   
   // 更新hreflang标签
-  updateHreflangTags(i18n.global.locale.value);
+  updateHreflangTags(i18n.global.locale.value || i18n.global.locale);
   
   next();
 });
