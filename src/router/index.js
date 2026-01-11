@@ -226,7 +226,7 @@ router.beforeEach((to, from, next) => {
   setLocaleByPath(to.path);
   
   // 更新hreflang标签
-  updateHreflangTags(i18n.global.locale.value);
+  updateHreflangTags(i18n.global.locale.value || i18n.global.locale);
   
   next();
 });
