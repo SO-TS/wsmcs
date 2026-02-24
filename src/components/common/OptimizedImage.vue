@@ -42,9 +42,9 @@
 <script setup>
 /**
  * @component OptimizedImage
- * @description 优化的响应式图片组件，支持多种格式和懒加载
+ * @description 优化的响应式图片组件，支持多种格式输出
  * 
- * @props {String} src - 简单图片源（当 srcSet 不提供时）
+ * @props {String} src - 简单图片源（仅当 srcSet 不提供时必填）
  * @props {Object} srcSet - 多格式图片对象 { avif, webp, png }
  * @props {String} alt - 图片替代文本（必需）
  * @props {String} loading - 加载策略 'lazy' | 'eager' (默认：'lazy')
@@ -61,40 +61,18 @@
  *   height="600"
  * />
  */
-import { useImageOptimization, getThumbnailPath } from '@/composables/useImageOptimization'
-import { computed } from 'vue'
+import { watchEffect } from 'vue'
 
 const props = defineProps({
-  // Original high-quality image source
+  // 简单图片源（仅当 srcSet 不存在时必填）
   src: {
     type: String,
-    required: true,
-  },
-  // Optional custom thumbnail source
-  // If not provided, will auto-generate from src
-  thumbnail: {
-    type: String,
-    default: null,
+    default: '',
   },
   // Image alt text for accessibility
   alt: {
     type: String,
     required: true,
-  },
-  // CSS classes for the img element
-  imgClass: {
-    type: String,
-    default: '',
-  },
-  // CSS classes for the wrapper div
-  wrapperClass: {
-    type: String,
-    default: '',
-  },
-  // Enable lazy loading
-  lazy: {
-    type: Boolean,
-    default: true,
   },
   // Image loading strategy: 'eager' or 'lazy'
   loading: {
@@ -130,28 +108,11 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['load', 'error'])
-
-// Determine thumbnail source
-const thumbnailSrc = computed(() => {
-  return props.thumbnail || getThumbnailPath(props.src)
+watchEffect(() => {
+  if (!props.srcSet && !props.src) {
+    throw new Error('[OptimizedImage] `src` is required when `srcSet` is not provided.')
+  }
 })
-
-// Use image optimization composable
-const { isFullImageLoaded, currentSrc, imageOpacity, handleFullImageLoad, handleImageError } = 
-  useImageOptimization(thumbnailSrc.value, props.src)
-
-// Handle full image load
-const onLoad = () => {
-  handleFullImageLoad()  
-  emit('load')
-}
-
-// Handle image error
-const onError = () => {
-  handleImageError()  
-  emit('error')
-}
 </script>
 
 <style scoped>
