@@ -23,52 +23,41 @@ const { setSEO } = useSEO();
 
 /* Theme Management */
 const theme = ref('light');
+const isThemeInitialized = ref(false);
+
+function initTheme() {
+  const savedTheme = localStorage.getItem('theme');
+  const resolvedTheme = savedTheme || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+  theme.value = resolvedTheme;
+  document.documentElement.classList.toggle('dark', resolvedTheme === 'dark');
+  isThemeInitialized.value = true;
+}
 
 /**
  * Optimized theme switcher with lazy evaluation
  */
 watch(theme, (newTheme) => {
+  const resolvedTheme = newTheme === 'dark' ? 'dark' : 'light';
+
   // Use classList for better performance than direct style manipulation
-  const htmlEl = document.documentElement;
-  if (newTheme === 'dark') {
-    htmlEl.classList.add('dark');
+  document.documentElement.classList.toggle('dark', resolvedTheme === 'dark');
+
+  if (isThemeInitialized.value) {
     // Persist theme preference asynchronously
     requestIdleCallback?.(() => {
-      localStorage.setItem('theme', 'dark');
+      localStorage.setItem('theme', resolvedTheme);
     }, { timeout: 2000 }) || setTimeout(() => {
-      localStorage.setItem('theme', 'dark');
-    }, 0);
-  } else {
-    htmlEl.classList.remove('dark');
-    requestIdleCallback?.(() => {
-      localStorage.setItem('theme', 'light');
-    }, { timeout: 2000 }) || setTimeout(() => {
-      localStorage.setItem('theme', 'light');
+      localStorage.setItem('theme', resolvedTheme);
     }, 0);
   }
-}, { immediate: true });
+});
 
 onMounted(() => {
+  initTheme();
+
   // Set initial SEO tags using the new SEO composable
   setSEO(null, `Home${locale.value === 'en' ? 'En' : 'ZhCN'}`);
-  
-  // Load theme preference using non-blocking approach
-  requestIdleCallback?.(() => {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      theme.value = savedTheme;
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      theme.value = 'dark';
-    }
-  }, { timeout: 3000 }) || (() => {
-    // Fallback for browsers without requestIdleCallback
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      theme.value = savedTheme;
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      theme.value = 'dark';
-    }
-  })();
 });
 
 
