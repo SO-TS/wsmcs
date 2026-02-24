@@ -39,7 +39,7 @@ app.directive('edge-glow', vEdgeGlow)
 app.directive('scroll-fade', vScrollFade)
 
 // Optimize app config for production
-if (process.env.NODE_ENV === 'production') {
+if (import.meta.env.PROD) {
   app.config.productionTip = false
   app.config.devtools = false
   // Disable performance measurements in production
